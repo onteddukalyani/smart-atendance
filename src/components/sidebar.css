@@ -1,0 +1,154 @@
+
+.sidebar {
+    height: 100vh;
+    width: 260px;
+    background: #111827;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 25px 0;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.sidebar .hidden {
+    width: 0;
+    padding: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 25px 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logo-icon {
+    font-size: 32px;
+    color: #8b5cf6;
+}
+
+.logo h2 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.logout {
+    margin: 20px 15px 0;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 14px;
+    cursor: pointer;
+    color: #ef4444;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.logout:hover {
+    background: #1f2937;
+}
+
+.menu {
+    list-style: none;
+    margin-top: 30px;
+    padding: 0 15px;
+}
+
+.menu li.active {
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+}
+
+.menu li.active .menu-icon,
+.menu li.active a {
+    color: white;
+}
+
+.menu li a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 18px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.menu li:hover {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    transform: translateX(5px);
+}
+
+.menu li:hover a {
+    color: white;
+}
+
+.menu-icon {
+    font-size: 20px;
+}
+
+.menu-btn {
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: #f4f6fb;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: #5b5ff6;
+    color: white;
+}
+
+
+.menu-btn {
+    width: 45px;
+    height: 45px;
+    border: none;
+    background: #f4f6fb;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.menu-btn:hover {
+    background: #5b5ff6;
+    color: white;
+}
+
+
+.menu li.active {
+    background: #9f05f9;;
+}
