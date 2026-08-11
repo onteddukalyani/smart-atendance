@@ -4,7 +4,7 @@
 }
 @media (max-width:2000px){
     .bottom-nav{
-        visibility: hidden;
+        display: none;
     }
 }
 

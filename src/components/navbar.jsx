@@ -6,6 +6,7 @@ import {
     FaUser
 } from "react-icons/fa";
 import React from "react";
+import './navbar.css'
 
 function Navbar({ formData }) {
     return (
