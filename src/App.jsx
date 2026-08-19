@@ -8,6 +8,8 @@ import Profile from './components/profile';
 import ProfileForm from './components/profileform';
 import ProfilePreview from './components/ProfilePreview';
 import Navbar from './components/navbar';
+import LecturerPage from './components/generateqr';
+import StudentForm from './components/studentform';
 function App() {
   const [formData, setFormData] = useState({
     image: "",
@@ -32,6 +34,8 @@ function App() {
           <Route path="/profile" element={<Profile formData={formData} />}>Profile</Route>
           <Route path="/profileform" element={<ProfileForm formData={formData} setFormData={setFormData} />}>Profile</Route>
           <Route path="/profilepreview" element={< ProfilePreview formData={formData} />}>Profile</Route>
+          <Route path="/lecturerpage" element={<LecturerPage/>}>Lecturer Page</Route>
+          <Route path="/student-form" element={<StudentForm formData={formData} setFormData={setFormData} />}>Student Form</Route>
         </Routes>
       </div>
       <BottomNav />

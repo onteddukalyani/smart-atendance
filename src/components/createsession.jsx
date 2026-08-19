@@ -1,0 +1,16 @@
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase";
+
+export async function createAttendanceSession() {
+  const now = Date.now();
+  const expiresAt = now + 5 * 60 * 1000;
+  const docRef = await addDoc(
+    collection(db, "attendance_sessions"),
+    {
+      createdAt: now,
+      expiresAt: expiresAt,
+      active: true
+    }
+  );
+  return docRef.id;
+}
