@@ -11,6 +11,7 @@ import Navbar from './components/navbar';
 import LecturerPage from './components/generateqr';
 import StudentForm from './components/studentform';
 import Settings from './components/settings';
+import AttendanceData from './components/attendancedata';
 function App() {
   const [formData, setFormData] = useState({
     image: "",
@@ -38,6 +39,9 @@ function App() {
           <Route path="/lecturerpage" element={<LecturerPage/>}>Lecturer Page</Route>
           <Route path="/student-form" element={<StudentForm formData={formData} setFormData={setFormData} />}>Student Form</Route>
           <Route path="/settings" element={<Settings/>} >Settings</Route>
+          <Route path="/attendance-data" element={<AttendanceData />}>
+            Attendance Data
+          </Route>
         </Routes>
       </div>
       <BottomNav />

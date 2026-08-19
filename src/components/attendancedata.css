@@ -1,0 +1,129 @@
+.attendance-data-page {
+  min-height: 100vh;
+  padding: 34px clamp(18px, 4vw, 56px);
+  color: #192b3a;
+  background: linear-gradient(135deg, #f8fbfc 0%, #eef7f4 100%);
+}
+
+.attendance-data-page h2 {
+  margin: 0 0 24px;
+  color: #173b43;
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  letter-spacing: 0;
+}
+
+.attendance-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 12px;
+  scrollbar-color: #a9c9c4 transparent;
+  scrollbar-width: thin;
+}
+
+.attendance-data-page>p {
+  width: fit-content;
+  margin: 28px auto;
+  padding: 24px 30px;
+  color: #647681;
+  background: #ffffff;
+  border: 1px solid #dce8e7;
+  border-radius: 12px;
+}
+
+.attendance-data-page table {
+  width: 100%;
+  min-width: 760px;
+  table-layout: fixed;
+  border-spacing: 0;
+  overflow: hidden;
+  font-family: inherit;
+  background: #ffffff;
+  border: 1px solid #dce8e7;
+  border-radius: 12px;
+  box-shadow: 0 14px 35px rgba(29, 73, 76, 0.1);
+}
+
+
+.attendance-data-page th,
+.attendance-data-page td {
+  padding: 17px 20px;
+  text-align: left;
+  vertical-align: middle;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.attendance-data-page th:nth-child(1),
+.attendance-data-page td:nth-child(1) {
+  width: 22%;
+}
+
+.attendance-data-page th:nth-child(2),
+.attendance-data-page td:nth-child(2) {
+  width: 16%;
+}
+
+.attendance-data-page th:nth-child(3),
+.attendance-data-page td:nth-child(3),
+.attendance-data-page th:nth-child(4),
+.attendance-data-page td:nth-child(4) {
+  width: 14%;
+}
+
+.attendance-data-page th:nth-child(5),
+.attendance-data-page td:nth-child(5) {
+  width: 34%;
+}
+
+
+.attendance-data-page th {
+  color: #ffffff;
+  background: #176b68;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+
+.attendance-data-page td {
+  font-size: 0.94rem;
+}
+
+.attendance-data-page tbody tr {
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.attendance-data-page tbody tr:nth-child(even) {
+  background: #f8fbfb;
+}
+
+.attendance-data-page tbody tr:hover {
+  background: #eaf6f2;
+}
+
+.attendance-data-page tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 720px) {
+  .attendance-data-page {
+    padding: 24px 14px;
+  }
+
+  .attendance-data-page h2 {
+    margin-bottom: 18px;
+  }
+
+  .attendance-data-page table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .attendance-data-page th,
+  .attendance-data-page td {
+    padding: 14px 16px;
+    white-space: nowrap;
+  }
+}

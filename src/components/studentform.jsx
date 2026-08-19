@@ -9,7 +9,6 @@ import { db } from "../firebase";
 function StudentForm({ formData, setFormData }) {
     const [checkingSession, setCheckingSession] = useState(true);
     const [expired, setExpired] = useState(false);
-
     const sessionId = new URLSearchParams(window.location.search).get("session");
 
     useEffect(() => {

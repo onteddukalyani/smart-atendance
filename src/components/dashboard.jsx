@@ -11,7 +11,7 @@ function Dashboard() {
         { icon: <SiGoogleclassroom />, name: "Classes", value: "",text:"No data yet" ,path: "/" },/* classes*/
         { icon: <IoQrCodeOutline />, name: "Active Sessions", value: "",text:"No active session", path: "/lecturerpage" },/* qr*/
         { icon: <GoPeople />, name: "Total Students", value: "",text:"No data yet", path: "/" }, /*students*/
-        { icon: <LuClipboardList />, name: "Atttendance Today", value: "",text:"No data yet", path: "/" },
+        { icon: <LuClipboardList />, name: "Atttendance Today", value: "",text:"No data yet", path: "/attendance-data" },
     ];
     return (
         <div className="dashboard-page">
