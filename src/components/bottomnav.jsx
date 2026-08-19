@@ -5,16 +5,16 @@ import {
   FaBook,
   FaCog,
 } from "react-icons/fa";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 function BottomNav() {
   return (
     <div className="bottom-nav">
       <div className="nav-item">
-        {/* <Link to="/home" className="menu-link"> */}
+        <Link to="/" className="menu-link">
         <div className="bottomicons"><FaHome />
           <span>Home</span></div>
 
-        {/* </Link> */}
+        </Link>
       </div>
 
       <div className="nav-item">
@@ -29,24 +29,23 @@ function BottomNav() {
       </div>
 
       <div className="nav-item">
-        {/* <Link to="/ProfilePreview"> */}
+        <Link to="/ProfilePreview">
           <div className="bottomicons">
             <FaUser />
             <span>Profile</span>
           </div>
-
-        {/* </Link> */}
+        </Link>
       </div>
 
       <div className="nav-item">
-        {/* <Link to="/settings" className="menu-link"> */}
+        <Link to="/settings" className="menu-link">
         <div className="bottomicons">
 
           <FaCog />
           <span>Settings</span>
         </div>
 
-        {/* </Link> */}
+        </Link>
 
       </div>
     </div>
