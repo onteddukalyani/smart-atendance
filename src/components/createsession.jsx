@@ -3,7 +3,7 @@ import { db } from "../firebase";
 
 export async function createAttendanceSession() {
   const now = Date.now();
-  const expiresAt = now + 5 * 60 * 1000;
+  const expiresAt = now + 2 * 60 * 1000;
   const docRef = await addDoc(
     collection(db, "attendance_sessions"),
     {

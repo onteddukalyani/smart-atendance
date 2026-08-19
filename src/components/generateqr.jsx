@@ -15,7 +15,7 @@ function GenerateQR() {
     }
   };
   const attendanceUrl = sessionId
-    ? `${window.location.origin}/student-form?session=${sessionId}`
+    ? `https://smartattend-ochre.vercel.app/student-form?session=${sessionId}`
     : "";
   return (
     <div className="qrpage">
@@ -29,7 +29,7 @@ function GenerateQR() {
             value={attendanceUrl}
             size={300}
           />
-          <p>Valid for 5 minutes</p>
+          <p>Valid for 2 minutes</p>
         </div>
       )}
     </div>
