@@ -1,4 +1,5 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import {
     FaUser,
     FaIdCard
@@ -6,12 +7,84 @@ import {
 import { db } from "../firebase";
 
 function StudentForm({ formData, setFormData }) {
+    const [checkingSession, setCheckingSession] = useState(true);
+    const [expired, setExpired] = useState(false);
+
     const sessionId = new URLSearchParams(window.location.search).get("session");
+
+    useEffect(() => {
+        const checkSession = async () => {
+            if (!sessionId) {
+                setExpired(true);
+                setCheckingSession(false);
+                return;
+            }
+
+            try {
+                const sessionRef = doc(
+                    db,
+                    "attendance_sessions",
+                    sessionId
+                );
+
+                const sessionSnapshot =
+                    await getDoc(sessionRef);
+
+                if (!sessionSnapshot.exists()) {
+                    setExpired(true);
+                    setCheckingSession(false);
+                    return;
+                }
+
+                const sessionData = sessionSnapshot.data();
+
+                const currentTime = Date.now();
+
+                if (
+                    currentTime >= sessionData.expiresAt ||
+                    sessionData.active === false
+                ) {
+                    setExpired(true);
+                } else {
+                    setExpired(false);
+
+                    // Check again when the expiry time is reached
+                    const remainingTime =
+                        sessionData.expiresAt - currentTime;
+
+                    setTimeout(() => {
+                        setExpired(true);
+                    }, remainingTime);
+                }
+
+            } catch (error) {
+                console.error(
+                    "Error checking session:",
+                    error
+                );
+
+                setExpired(true);
+
+            } finally {
+                setCheckingSession(false);
+            }
+        };
+
+        checkSession();
+
+    }, [sessionId]);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((currentData) => ({ ...currentData, [name]: value }));
+
+        setFormData((currentData) => ({
+            ...currentData,
+            [name]: value
+        }));
     };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,7 +99,38 @@ function StudentForm({ formData, setFormData }) {
         }
 
         try {
-            const attendanceId = `${sessionId}_${formData.rollNo.trim()}`;
+
+            // CHECK SESSION EXPIRY AGAIN
+            const sessionRef = doc(
+                db,
+                "attendance_sessions",
+                sessionId
+            );
+
+            const sessionSnapshot =
+                await getDoc(sessionRef);
+
+            if (!sessionSnapshot.exists()) {
+                alert("❌ QR Code has expired.");
+                setExpired(true);
+                return;
+            }
+
+            const sessionData = sessionSnapshot.data();
+
+            if (
+                Date.now() >= sessionData.expiresAt ||
+                sessionData.active === false
+            ) {
+                alert("❌ QR Code has expired. Attendance is closed.");
+                setExpired(true);
+                return;
+            }
+
+
+            // YOUR EXISTING DUPLICATE CHECK
+            const attendanceId =
+                `${sessionId}_${formData.rollNo.trim()}`;
 
             console.log("Attendance ID:", attendanceId);
 
@@ -36,15 +140,24 @@ function StudentForm({ formData, setFormData }) {
                 attendanceId
             );
 
-            const existingRecord = await getDoc(attendanceRef);
+            const existingRecord =
+                await getDoc(attendanceRef);
 
-            console.log("Already exists:", existingRecord.exists());
+            console.log(
+                "Already exists:",
+                existingRecord.exists()
+            );
 
             if (existingRecord.exists()) {
-                alert("❌ You have already submitted attendance for this session.");
+                alert(
+                    "❌ You have already submitted attendance for this session."
+                );
+
                 return;
             }
 
+
+            // SAVE ATTENDANCE
             await setDoc(attendanceRef, {
                 sessionId: sessionId,
                 fullName: formData.fullName,
@@ -55,10 +168,20 @@ function StudentForm({ formData, setFormData }) {
             alert("✅ Attendance saved successfully!");
 
         } catch (error) {
-            console.error("Attendance error:", error);
-            alert("❌ Could not save attendance: " + error.message);
+
+            console.error(
+                "Attendance error:",
+                error
+            );
+
+            alert(
+                "❌ Could not save attendance: " +
+                error.message
+            );
         }
     };
+
+
     const handleReset = () => {
         setFormData({
             fullName: "",
@@ -66,15 +189,52 @@ function StudentForm({ formData, setFormData }) {
         });
     };
 
+
+    // CHECKING SESSION
+    if (checkingSession) {
+        return (
+            <div className="card">
+                <h2>Checking QR...</h2>
+            </div>
+        );
+    }
+
+
+    // EXPIRED QR
+    if (expired) {
+        return (
+            <div className="card">
+                <h2>❌ QR Code Expired</h2>
+
+                <p>
+                    This attendance QR code is no longer valid.
+                </p>
+
+                <p>
+                    Please ask the lecturer to generate a new QR code.
+                </p>
+            </div>
+        );
+    }
+
+
     return (
         <div className="card">
+
             <form onSubmit={handleSubmit}>
+
                 <div className="form-grid">
+
                     {/* Name */}
+
                     <div className="input-group">
+
                         <label>Full Name</label>
+
                         <div className="input-icon">
+
                             <FaUser />
+
                             <input
                                 type="text"
                                 name="fullName"
@@ -83,23 +243,61 @@ function StudentForm({ formData, setFormData }) {
                                 onChange={handleChange}
                                 required
                             />
+
                         </div>
+
                     </div>
+
+
                     {/* Roll */}
+
                     <div className="input-group">
+
                         <label>Roll Number</label>
+
                         <div className="input-icon">
+
                             <FaIdCard />
-                            <input type="text" name="rollNo" placeholder="Enter Roll Number"value={formData.rollNo} onChange={handleChange}/>
+
+                            <input
+                                type="text"
+                                name="rollNo"
+                                placeholder="Enter Roll Number"
+                                value={formData.rollNo}
+                                onChange={handleChange}
+                            />
+
                         </div>
+
                     </div>
+
                 </div>
+
+
                 {/* Buttons */}
+
                 <div className="button-group">
-                    <button className="save-btn" type="submit" onClick={handleSubmit}>Submit</button>
-                    <button className="reset-btn" type="button" onClick={handleReset}>Reset</button>
+
+                    <button
+                        className="save-btn"
+                        type="submit"
+                        onClick={handleSubmit}
+                    >
+                        Submit
+                    </button>
+
+                    <button
+                        className="reset-btn"
+                        type="button"
+                        onClick={handleReset}
+                    >
+                        Reset
+                    </button>
+
                 </div>
+
             </form>
+
         </div>
     );
 }
