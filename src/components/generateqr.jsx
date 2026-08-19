@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
-import { createAttendanceSession } from "./createSession";
+import { createAttendanceSession } from "./createsession";
 import "./generateqr.css"
 function GenerateQR() {
   const [sessionId, setSessionId] = useState("");
