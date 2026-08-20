@@ -269,7 +269,6 @@ function StudentForm({ formData, setFormData }) {
 
                         </div>
 
-                        <FaceScanner/>
 
                     </div>
 
@@ -288,13 +287,15 @@ function StudentForm({ formData, setFormData }) {
                         Submit
                     </button>
 
-                    <button
-                        className="reset-btn"
-                        type="button"
-                        onClick={handleReset}
-                    >
-                        Reset
-                    </button>
+                    <Link to='/facedetection'>
+                        <button
+                            className="reset-btn"
+                            type="button"
+                            onClick={handleReset}
+                        >
+                            Face Scan
+                        </button>
+                    </Link>
 
                 </div>
 
