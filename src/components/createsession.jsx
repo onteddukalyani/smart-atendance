@@ -11,7 +11,7 @@ export async function createAttendanceSession(classCode) {
       createdAt: now,
       expiresAt: expiresAt,
       active: true
-    }
+     }
   );
   return docRef.id;
 }

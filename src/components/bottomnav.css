@@ -15,9 +15,7 @@
         display: flex;
         justify-content: space-around;
         align-items: center;
-        .menu-link{
-    text-decoration: none;
-}
+        .menu-link{text-decoration: none;}
 
         position: fixed;
         bottom: 0;
@@ -58,5 +56,8 @@
             flex-direction:column;
             gap:8px;
             align-items: center;
+        }
+        .profile-content{
+            width:auto;
         }
     }

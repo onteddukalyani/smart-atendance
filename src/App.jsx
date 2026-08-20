@@ -12,6 +12,7 @@ import LecturerPage from './components/generateqr';
 import StudentForm from './components/studentform';
 import Settings from './components/settings';
 import AttendanceData from './components/attendancedata';
+import FaceScanner from './components/facescanner';
 function App() {
   const [formData, setFormData] = useState({
     image: "",
@@ -39,9 +40,8 @@ function App() {
           <Route path="/lecturerpage" element={<LecturerPage/>}>Lecturer Page</Route>
           <Route path="/student-form" element={<StudentForm formData={formData} setFormData={setFormData} />}>Student Form</Route>
           <Route path="/settings" element={<Settings/>} >Settings</Route>
-          <Route path="/attendance-data" element={<AttendanceData />}>
-            Attendance Data
-          </Route>
+          <Route path="/attendance-data" element={<AttendanceData />}>Attendance Data</Route>
+          <Route path="/facedetection" element={<FaceScanner/>}>Face Detection</Route>
         </Routes>
       </div>
       <BottomNav />

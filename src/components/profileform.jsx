@@ -64,7 +64,8 @@ function ProfileForm({ formData, setFormData }) {
 
     return (
 
-        <div className="card">
+        <div className="profile-form">
+            <div className="card">
             <form onSubmit={handleSubmit}>
                 <h2 className="form-title">
                     Student Profile
@@ -381,6 +382,7 @@ function ProfileForm({ formData, setFormData }) {
 
             </form>
 
+        </div>
         </div>
 
     );

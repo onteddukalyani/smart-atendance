@@ -8,7 +8,7 @@ import {
     FaIdCard, FaEdit
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
+import './profileform.css'
 
 function ProfilePreview({ formData }) {
 

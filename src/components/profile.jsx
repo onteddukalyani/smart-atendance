@@ -1,8 +1,8 @@
 import ProfilePreview from "./ProfilePreview";
-
+import './profileform.css'
 function Profile({ formData }) {
     return (
-        <div className="content">
+        <div className="profile-content">
             <ProfilePreview formData={formData} />
         </div>
     );

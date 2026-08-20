@@ -1,3 +1,15 @@
+.profile-content{
+    padding:40px;
+}
+
+.profile-edit{
+    text-decoration: none;
+}
+
+.profile-form{
+    padding:20px;
+    width:auto;
+}
 .profile {
     display: flex;
     align-items: center;
@@ -234,7 +246,7 @@
 
 .profile-card {
     padding: 50px;
-    width: max-content;
+    width: fit-content;
     height: fit-content;
     top: 100px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);

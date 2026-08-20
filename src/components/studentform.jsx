@@ -5,6 +5,7 @@ import {
     FaIdCard
 } from "react-icons/fa";
 import { db } from "../firebase";
+import FaceScanner from "./facescanner";
 
 function StudentForm({ formData, setFormData }) {
     const [checkingSession, setCheckingSession] = useState(true);
@@ -267,6 +268,8 @@ function StudentForm({ formData, setFormData }) {
                             />
 
                         </div>
+
+                        <FaceScanner/>
 
                     </div>
 
