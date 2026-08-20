@@ -6,7 +6,7 @@ import {
 } from "react-icons/fa";
 import { db } from "../firebase";
 import FaceScanner from "./facescanner";
-import '.studentform.css'
+import './studentform.css';
 
 function StudentForm({ formData, setFormData }) {
     const [checkingSession, setCheckingSession] = useState(true);
