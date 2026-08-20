@@ -9,7 +9,7 @@
     "providers": {
       "emailPassword": true,
       "googleSignIn": {
-        "oAuthBrandDisplayName": "Smart Attend",
+        "oAuthBrandDisplayName": "Smart Attendance",
         "supportEmail": "support@undefined.firebaseapp.com"
       }
     }

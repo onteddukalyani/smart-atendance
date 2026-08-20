@@ -4,11 +4,15 @@ import { createAttendanceSession } from "./createsession";
 import "./generateqr.css"
 function GenerateQR() {
   const [sessionId, setSessionId] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const handleGenerateQR = async () => {
     if (!classCode) {
         alert("Please select a class.");
         return;
     }
+  setIsGenerating(true);
+  setErrorMessage("");
     try {
         const id = await createAttendanceSession(classCode);
         setSessionId(id);
@@ -16,10 +20,13 @@ function GenerateQR() {
         console.log("Class Code:", classCode);
     } catch (error) {
         console.error("Error creating session:", error);
+    setErrorMessage(error.message || "Could not create an attendance session.");
+  } finally {
+    setIsGenerating(false);
     }
 };
   const attendanceUrl = sessionId
-    ? `https://smartattend-ochre.vercel.app/student-form?session=${sessionId}`
+    ? `https://smart-atendance.vercel.app//student-form?session=${sessionId}`
     : "";
     const [classCode, setClassCode] = useState("");
   return (
@@ -34,9 +41,10 @@ function GenerateQR() {
         <option value="DSAI">DSAI</option>
         <option value="ECE">ECE</option>
       </select>
-      <button onClick={handleGenerateQR} className="genqr-btn">
-        Generate QR
+      <button onClick={handleGenerateQR} className="genqr-btn" disabled={isGenerating}>
+        {isGenerating ? "Generating..." : "Generate QR"}
       </button>
+      {errorMessage && <p role="alert">{errorMessage}</p>}
       {sessionId && (
         <div>
           <h3>Scan this QR</h3>
