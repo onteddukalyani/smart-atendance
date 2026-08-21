@@ -12,6 +12,7 @@ import AttendanceData from './components/attendancedata';
 import FaceScanner from './components/facescanner';
 import ClassesData, { SessionAttendanceData } from './components/sessionsdata';
 function App() {
+  const [sidebarHidden, setSidebarHidden] = useState(false);
   const [formData, setFormData] = useState({
     image: "",
     fullName: "",
@@ -27,9 +28,9 @@ function App() {
 
   return (
     <div className='app'>
-      <Sidebar />
+      <Sidebar hidden={sidebarHidden} />
       <div className='app-content'>
-        <Navbar formData={formData}/>
+        <Navbar formData={formData} onMenuClick={() => setSidebarHidden((hidden) => !hidden)} />
         <Routes>
           <Route path="/" element={<Dashboard />}>Dashboard</Route>
           <Route path="/lecturerpage" element={<LecturerPage/>}>Lecturer Page</Route>

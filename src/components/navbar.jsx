@@ -8,13 +8,13 @@ import {
 import React from "react";
 import './navbar.css'
 
-function Navbar({ formData }) {
+function Navbar({ formData, onMenuClick }) {
     return (
         <header className="navbar">
 
             <div className="left-nav">
 
-                <button className="menu-btn">
+                <button className="menu-btn" onClick={onMenuClick} aria-label="Toggle sidebar">
                     <FaBars />
                 </button>
 

@@ -100,6 +100,87 @@
     height:70px
 }
 
+.recent-sessions-list {
+    display: grid;
+    gap: 10px;
+}
+
+.recent-session {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 14px;
+    color: #1f2937;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.recent-session:hover {
+    border-color: #c4b5fd;
+    box-shadow: 0 8px 20px rgba(100, 116, 139, 0.14);
+    transform: translateY(-1px);
+}
+
+.recent-session-icon {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    place-items: center;
+    color: #6d28d9;
+    background: #f1edff;
+    border-radius: 11px;
+    font-size: 1.05rem;
+}
+
+.recent-session-info {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.recent-session-info strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.94rem;
+}
+
+.recent-session-info span,
+.recent-session-time {
+    color: #64748b;
+    font-size: 0.78rem;
+}
+
+.recent-session-time {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    white-space: nowrap;
+}
+
+.recent-session-time small {
+    color: #94a3b8;
+    font-size: 0.7rem;
+}
+
+.recent-start-link {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 10px 16px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
 @media (max-width: 800px) {
     .dashboard-page {
         padding: 24px 16px 120px;

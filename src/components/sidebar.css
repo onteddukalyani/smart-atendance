@@ -1,4 +1,3 @@
-
 .sidebar {
     height: 100vh;
     width: 260px;
@@ -12,13 +11,12 @@
     transition: width 0.3s ease, opacity 0.3s ease;
 }
 
-.sidebar .hidden {
+.sidebar.hidden {
     width: 0;
     padding: 0;
     overflow: hidden;
     opacity: 0;
 }
-
 
 .logo {
     display: flex;
@@ -71,7 +69,7 @@
     color: white;
 }
 
-.menu li a{
+.menu li a {
     text-decoration: none;
     color: white;
     display: flex;
@@ -113,44 +111,6 @@
 
 .menu-icon {
     font-size: 20px;
-}
-
-.menu-btn {
-    width: 45px;
-    height: 45px;
-    border: none;
-    background: #f4f6fb;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: 0.3s;
-}
-
-.menu-btn:hover {
-    background: #5b5ff6;
-    color: white;
-}
-
-
-.menu-btn {
-    width: 45px;
-    height: 45px;
-    border: none;
-    background: #f4f6fb;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 20px;
-    transition: 0.3s;
-}
-
-.menu-btn:hover {
-    background: #5b5ff6;
-    color: white;
-}
-
-
-.menu li.active {
-    background: #9f05f9;;
 }
 
 @media (max-width: 800px) {

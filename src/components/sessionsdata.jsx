@@ -155,7 +155,6 @@ export function SessionAttendanceData() {
         <div className="attendance-data-page">
             <button className="back-to-sessions-btn" onClick={() => navigate("/attendance-sessions")}>⬅️ Back to Sessions</button>
             <h2>Attendance - {session.classCode}</h2>
-            <p>Session ID: {session.id}</p>
             {records.length === 0 ? <p>No students submitted attendance for this session.</p> : (
                 <div className="attendance-table-scroll">
                     <table>

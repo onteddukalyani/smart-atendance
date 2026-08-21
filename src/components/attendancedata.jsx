@@ -10,13 +10,22 @@ function AttendanceData() {
     useEffect(() => {
         const getAttendance = async () => {
             try {
-                const snapshot = await getDocs(
-                    collection(db, "attendance_records")
+                const [recordsSnapshot, sessionsSnapshot] = await Promise.all([
+                    getDocs(collection(db, "attendance_records")),
+                    getDocs(collection(db, "attendance_sessions"))
+                ]);
+
+                const sessions = new Map(
+                    sessionsSnapshot.docs.map((sessionDoc) => [
+                        sessionDoc.id,
+                        sessionDoc.data()
+                    ])
                 );
 
-                const data = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data()
+                const data = recordsSnapshot.docs.map((recordDoc) => ({
+                    id: recordDoc.id,
+                    ...recordDoc.data(),
+                    session: sessions.get(recordDoc.data().sessionId)
                 }));
 
                 setRecords(data);
@@ -59,8 +68,8 @@ function AttendanceData() {
                                 <tr key={record.id}>
                                     <td>{record.fullName}</td>
                                     <td>{record.rollNo}</td>
-                                    <td>CS162</td>
-                                    <td>C003</td>
+                                    <td>{record.session?.classCode || "N/A"}</td>
+                                    <td>{record.session?.roomNo || "N/A"}</td>
                                     <td>
                                         {new Date(
                                             record.submittedAt
