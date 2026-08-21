@@ -6,12 +6,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD_oqAOLLwS_sYXpTisEXl4qZAiSeIxooM",
-  authDomain: "smart-attendance-ok.firebaseapp.com",
-  projectId: "smart-attendance-ok",
-  storageBucket: "smart-attendance-ok.firebasestorage.app",
-  messagingSenderId: "313754116452",
-  appId: "1:313754116452:web:ef955c1b662607d4145a71"
+  apiKey: "AIzaSyDl2Bw07zg72utoFBWTueZPjbTxu-p7nkc",
+  authDomain: "smartattend-k.firebaseapp.com",
+  projectId: "smartattend-k",
+  storageBucket: "smartattend-k.firebasestorage.app",
+  messagingSenderId: "978874777113",
+  appId: "1:978874777113:web:7bee9842a75f5d66aeb488"
 };
 
 // Initialize Firebase
