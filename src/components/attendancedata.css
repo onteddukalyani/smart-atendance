@@ -1,3 +1,9 @@
+.back-to-sessions-btn{
+  padding:10px;
+  font-size:15px;
+  border-radius: 6px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
 .attendance-data-page {
   min-height: 100vh;
   padding: 34px clamp(18px, 4vw, 56px);

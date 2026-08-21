@@ -13,7 +13,7 @@ import StudentForm from './components/studentform';
 import Settings from './components/settings';
 import AttendanceData from './components/attendancedata';
 import FaceScanner from './components/facescanner';
-import ClassesData from './components/sessionsdata';
+import ClassesData, { SessionAttendanceData } from './components/sessionsdata';
 function App() {
   const [formData, setFormData] = useState({
     image: "",
@@ -44,6 +44,7 @@ function App() {
           <Route path="/attendance-data" element={<AttendanceData />}>Attendance Data</Route>
           <Route path="/facedetection" element={<FaceScanner/>}>Face Detection</Route>
           <Route path="/attendance-sessions" element={<ClassesData/>}>Classes</Route>
+          <Route path="/attendance-sessions/:sessionId" element={<SessionAttendanceData/>} />
         </Routes>
       </div>
       <BottomNav />

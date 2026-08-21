@@ -1,73 +1,130 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs ,query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
-import './attendacedata.css'
+import './attendancedata.css';
 
 function ClassesData() {
-    const [records, setRecords] = useState([]);
-    const [loadingSessions, setLoadingSessions] = useState(true);
-    const [sessions,setSessions]=useState([]);
-    const [loadingRecords, setLoadingRecords] = useState(false);
+    const [sessions, setSessions] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getSessions = async () => {
             try {
-                const snapshot = await getDocs(
-                    collection(db, "attendance_sessions")
-                );
-
-                const data = snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data()
-                }));
-
-                setSessions(data);
-
+                const snapshot = await getDocs(collection(db, "attendance_sessions"));
+                setSessions(snapshot.docs.map((sessionDoc) => ({
+                    id: sessionDoc.id,
+                    ...sessionDoc.data()
+                })));
             } catch (error) {
-                console.error("Error getting Sessions:", error);
+                console.error("Error getting sessions:", error);
             } finally {
-                setLoadingSessions(false);
+                setLoading(false);
             }
         };
 
         getSessions();
     }, []);
-    const getAttendanceForSession=async(session)=>{
-        setSelectedSession(session);
-        setLoadingRecords(true);
-        try{
-            const q=query(collection(db,"attendance_records"),where("sessionId","==",session.sessionId));
-            const snapshot=await getDocs(q);
-            const data=snapshot.docs.map((doc)=>({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setRecords(data);
-        } catch (error){
-            console.log("Error getting attendance:",error);
-        } finally {
-            setLoadingRecords(false);
-        }
-    };
-    const goBack=()=>{
-        setSelectedSession(null);
-        setRecords([]);
-    };
 
-    if (loadingSessions) {
+    if (loading) {
+        return <p>Loading sessions...</p>;
+    }
+
+    return (
+        <div className="attendance-data-page">
+            <h2>Attendance Sessions</h2>
+            {sessions.length === 0 ? <p>No attendance sessions yet.</p> : (
+                <div className="attendance-table-scroll">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Class Code</th>
+                                <th>Room No</th>
+                                <th>Session ID</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {sessions.map((session) => (
+                                <tr key={session.id} onClick={() => navigate(`/attendance-sessions/${session.id}`)}>
+                                    <td>{session.classCode || "Class"}</td>
+                                    <td>{session.roomNo || "N/A"}</td>
+                                    <td>{session.id}</td>
+                                    <td>{session.createdAt ? new Date(session.createdAt).toLocaleDateString() : "N/A"}</td>
+                                    <td>{session.createdAt ? new Date(session.createdAt).toLocaleTimeString() : "N/A"}</td>
+                                    <td>
+                                        <button onClick={() => navigate(`/attendance-sessions/${session.id}`)}>
+                                            View Attendance
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+        </div>
+    );
+}
+
+export function SessionAttendanceData() {
+    const { sessionId } = useParams();
+    const [session, setSession] = useState(null);
+    const [records, setRecords] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const getAttendance = async () => {
+            try {
+                const sessionSnapshot = await getDoc(doc(db, "attendance_sessions", sessionId));
+                if (!sessionSnapshot.exists()) {
+                    return;
+                }
+
+                setSession({ id: sessionSnapshot.id, ...sessionSnapshot.data() });
+                const recordsQuery = query(
+                    collection(db, "attendance_records"),
+                    where("sessionId", "==", sessionId)
+                );
+                const recordsSnapshot = await getDocs(recordsQuery);
+                setRecords(recordsSnapshot.docs.map((recordDoc) => ({
+                    id: recordDoc.id,
+                    ...recordDoc.data()
+                })));
+            } catch (error) {
+                console.error("Error getting attendance:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getAttendance();
+    }, [sessionId]);
+
+    if (loading) {
         return <p>Loading attendance...</p>;
     }
 
-    if (setSelectedSession){
-        return(
+    if (!session) {
+        return (
             <div className="attendance-data-page">
-                <button onClick={goBack}>⬅️ Back to Sessions</button>
-                <h2>Attendance-{selectedSession.classCode}</h2>
-                <p>Session ID: {selectedSession.sessionId}</p>
-                {loadingRecords?
-                (<p>Loading Attendance.......</p>):
-                records.length===0 ? (<p>No Students Submitted attendance for this session.</p>):
-                (<div className="attendance-table-scroll">
+                <button className="back-to-sessions-btn" onClick={() => navigate("/attendance-sessions")}>⬅️ Back to Sessions</button>
+                <p>Session not found.</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="attendance-data-page">
+            <button className="back-to-sessions-btn" onClick={() => navigate("/attendance-sessions")}>⬅️ Back to Sessions</button>
+            <h2>Attendance - {session.classCode}</h2>
+            <p>Session ID: {session.id}</p>
+            {records.length === 0 ? <p>No students submitted attendance for this session.</p> : (
+                <div className="attendance-table-scroll">
                     <table>
                         <thead>
                             <tr>
@@ -75,86 +132,27 @@ function ClassesData() {
                                 <th>Roll Number</th>
                                 <th>Class Code</th>
                                 <th>Room No</th>
-                                <th>Submitted At</th>
+                                <th>Date</th>
+                                <th>Time</th>
                             </tr>
                         </thead>
-                        <tbody>{records.map((record)=>(
-                            <tr key={record.id}>
-                                <td>{record.fullName}</td>
-                                <td>{record.rollNo}</td>
-                                <td>{selectedSession.classCode}</td>
-                                <td>{record.submittedAt? new Date(record.submittedAt).toLocaleString():"N/A"}</td>
-                            </tr>
-
-                        ))}</tbody>
+                        <tbody>
+                            {records.map((record) => (
+                                <tr key={record.id}>
+                                    <td>{record.fullName}</td>
+                                    <td>{record.rollNo}</td>
+                                    <td>{session.classCode}</td>
+                                    <td>{session.roomNo || "N/A"}</td>
+                                    <td>{record.submittedAt ? new Date(record.submittedAt).toLocaleDateString() : "N/A"}</td>
+                                    <td>{record.submittedAt ? new Date(record.submittedAt).toLocaleTimeString() : "N/A"}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
-                </div>)
-                }
-            </div>
-        );
-    }
-    return (
-        <div className="attendance-data-page">
-            <h2>Attendance Sessions</h2>
-            {sessions.length===0?(<p>No Attendance Sessions yet.</p>):(
-                <div className="sessions-container">
-                    {
-                    sessions.map((session)=>(
-                        <div key={session.id} className="session-card" onClick={()=>getAttendanceForSession(session)}>
-                            <h3>{session.classCode || "Class"}</h3>
-                            <p><strong>Session:</strong>{" "}{session.sessionId}</p>
-                            <p><strong>Room No:</strong>{" "}{session.roomNo || "N/A" }</p>
-                            <p><strong>Date:</strong>{" "}{session.createdAt?new Date(session.createdAt).toLocaleDateString():"N/A"}</p>
-                            <button>View Attendance</button>
-                        </div>
-                            
-                    ))
-                }
                 </div>
-            )
-            }
+            )}
         </div>
     );
-
-    // return (
-    //     <div className="attendance-data-page">
-    //         <h2>Attendance Records</h2>
-
-    //         {records.length === 0 ? (
-    //             <p>No attendance records yet.</p>
-    //         ) : (
-    //             <div className="attendance-table-scroll">
-    //                 <table>
-    //                     <thead>
-    //                         <tr>
-    //                             <th>Name</th>
-    //                             <th>Roll Number</th>
-    //                             <th>Class Code</th>
-    //                             <th>Room No</th>
-    //                             <th>Submitted At</th>
-    //                         </tr>
-    //                     </thead>
-
-    //                     <tbody>
-    //                         {records.map((record) => (
-    //                             <tr key={record.id}>
-    //                                 <td>{record.fullName}</td>
-    //                                 <td>{record.rollNo}</td>
-    //                                 <td>CS162</td>
-    //                                 <td>C003</td>
-    //                                 <td>
-    //                                     {new Date(
-    //                                         record.submittedAt
-    //                                     ).toLocaleString()}
-    //                                 </td>
-    //                             </tr>
-    //                         ))}
-    //                     </tbody>
-    //                 </table>
-    //             </div>
-    //         )}
-    //     </div>
-    // );
 }
 
 export default ClassesData;

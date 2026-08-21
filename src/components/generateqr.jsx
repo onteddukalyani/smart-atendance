@@ -4,17 +4,18 @@ import { createAttendanceSession } from "./createsession";
 import "./generateqr.css"
 function GenerateQR() {
   const [sessionId, setSessionId] = useState("");
+  const [roomNo, setRoomNo] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const handleGenerateQR = async () => {
-    if (!classCode) {
+    if (!classCode || !roomNo.trim()) {
         alert("Please select a class.");
         return;
     }
   setIsGenerating(true);
   setErrorMessage("");
     try {
-        const id = await createAttendanceSession(classCode);
+        const id = await createAttendanceSession(classCode, roomNo.trim());
         setSessionId(id);
         console.log("Session ID:", id);
         console.log("Class Code:", classCode);
@@ -31,30 +32,72 @@ function GenerateQR() {
     const [classCode, setClassCode] = useState("");
   return (
     <div className="qrpage">
-      <select
-        value={classCode}
-        onChange={(e) => setClassCode(e.target.value)}
-      >
-        <option value="">Select Class</option>
-        <option value="CSE-A">CSE-A</option>
-        <option value="CSE-B">CSE-B</option>
-        <option value="DSAI">DSAI</option>
-        <option value="ECE">ECE</option>
-      </select>
-      <button onClick={handleGenerateQR} className="genqr-btn" disabled={isGenerating}>
-        {isGenerating ? "Generating..." : "Generate QR"}
-      </button>
-      {errorMessage && <p role="alert">{errorMessage}</p>}
-      {sessionId && (
-        <div>
-          <h3>Scan this QR</h3>
-          <QRCodeCanvas
-            value={attendanceUrl}
-            size={300}
+      <div className="qrpage-header">
+        <p className="qrpage-kicker">LECTURER TOOLS</p>
+        <h1>Generate attendance QR</h1>
+        <p>Select a class and room to create a two-minute attendance session.</p>
+      </div>
+      <div className="qrpage-layout">
+        <section className="qr-builder">
+          <div className="qr-section-heading">
+            <span className="qr-step">01</span>
+            <div>
+              <h2>Session details</h2>
+              <p>Tell students where to check in.</p>
+            </div>
+          </div>
+          <label htmlFor="class-code">Class</label>
+          <select
+            id="class-code"
+            value={classCode}
+            onChange={(e) => setClassCode(e.target.value)}
+          >
+            <option value="">Select Class</option>
+            <option value="CSE-A">CSE-A</option>
+            <option value="CSE-B">CSE-B</option>
+            <option value="DSAI">DSAI</option>
+            <option value="ECE">ECE</option>
+          </select>
+          <label htmlFor="room-number">Room number</label>
+          <input
+            id="room-number"
+            type="text"
+            value={roomNo}
+            onChange={(e) => setRoomNo(e.target.value)}
+            placeholder="e.g. C003"
+            required
           />
-          <p>Valid for 2 minutes</p>
-        </div>
-      )}
+          <button onClick={handleGenerateQR} className="genqr-btn" disabled={isGenerating}>
+            <span>{isGenerating ? "Generating..." : "Generate QR code"}</span>
+            {!isGenerating && <span aria-hidden="true">→</span>}
+          </button>
+          {errorMessage && <p className="qr-error" role="alert">{errorMessage}</p>}
+        </section>
+        <section className={`qr-result ${sessionId ? "qr-result-ready" : ""}`}>
+          {sessionId ? (
+            <>
+              <div className="qr-result-heading">
+                <span className="qr-status-dot" />
+                <div>
+                  <p className="qrpage-kicker">SESSION READY</p>
+                  <h2>{classCode} · {roomNo}</h2>
+                </div>
+              </div>
+              <div className="qr-code-frame">
+                <QRCodeCanvas value={attendanceUrl} size={300} />
+              </div>
+              <p className="qr-result-note">Students can scan this code to submit attendance.</p>
+              <div className="qr-expiry"><span>Valid for</span><strong>2 minutes</strong></div>
+            </>
+          ) : (
+            <div className="qr-empty-state">
+              <div className="qr-empty-mark">QR</div>
+              <h2>Your QR code will appear here</h2>
+              <p>Complete the session details to get started.</p>
+            </div>
+          )}
+        </section>
+      </div>
     </div>
   );
 }
