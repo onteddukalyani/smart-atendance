@@ -79,7 +79,12 @@
 
 .attendance-data-page th:nth-child(5),
 .attendance-data-page td:nth-child(5) {
-  width: 34%;
+  width: 14%;
+}
+
+.attendance-data-page th:nth-child(6),
+.attendance-data-page td:nth-child(6) {
+  width: 20%;
 }
 
 
@@ -95,6 +100,30 @@
 
 .attendance-data-page td {
   font-size: 0.94rem;
+}
+
+.attendance-data-page td button {
+  margin: 3px 4px 3px 0;
+  padding: 8px 11px;
+  color: #ffffff;
+  background: #176b68;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.attendance-data-page td button:hover {
+  background: #0e5755;
+}
+
+.attendance-data-page td button.remove-session-btn {
+  background: #b44f43;
+}
+
+.attendance-data-page td button.remove-session-btn:hover {
+  background: #913d35;
 }
 
 .attendance-data-page tbody tr {

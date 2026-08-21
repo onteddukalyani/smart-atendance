@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where, writeBatch } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
 import './attendancedata.css';
@@ -8,6 +8,32 @@ function ClassesData() {
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+
+    const removeSession = async (event, session) => {
+        event.stopPropagation();
+        if (!window.confirm(`Remove the ${session.classCode || "selected"} session?`)) {
+            return;
+        }
+
+        try {
+            const recordsQuery = query(
+                collection(db, "attendance_records"),
+                where("sessionId", "==", session.id)
+            );
+            const recordsSnapshot = await getDocs(recordsQuery);
+            const batch = writeBatch(db);
+
+            recordsSnapshot.docs.forEach((recordDoc) => {
+                batch.delete(recordDoc.ref);
+            });
+            batch.delete(doc(db, "attendance_sessions", session.id));
+            await batch.commit();
+            setSessions((currentSessions) => currentSessions.filter(({ id }) => id !== session.id));
+        } catch (error) {
+            console.error("Error removing session:", error);
+            window.alert("Could not remove this session.");
+        }
+    };
 
     useEffect(() => {
         const getSessions = async () => {
@@ -44,7 +70,7 @@ function ClassesData() {
                                 <th>Session ID</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Action</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,8 +82,15 @@ function ClassesData() {
                                     <td>{session.createdAt ? new Date(session.createdAt).toLocaleDateString() : "N/A"}</td>
                                     <td>{session.createdAt ? new Date(session.createdAt).toLocaleTimeString() : "N/A"}</td>
                                     <td>
-                                        <button onClick={() => navigate(`/attendance-sessions/${session.id}`)}>
+                                        <button type="button" onClick={() => navigate(`/attendance-sessions/${session.id}`)}>
                                             View Attendance
+                                        </button>
+                                        <button
+                                            type="button"
+                                            className="remove-session-btn"
+                                            onClick={(event) => removeSession(event, session)}
+                                        >
+                                            Remove
                                         </button>
                                     </td>
                                 </tr>
