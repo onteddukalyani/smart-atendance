@@ -27,7 +27,7 @@ function GenerateQR() {
     }
 };
   const attendanceUrl = sessionId
-    ? `https://smartattend-ochre.vercel.app/student-form?session=${sessionId}`
+    ? `${window.location.origin}/student-form?session=${sessionId}`
     : "";
     const [classCode, setClassCode] = useState("");
   return (
