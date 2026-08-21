@@ -26,7 +26,7 @@ function GenerateQR() {
     }
 };
   const attendanceUrl = sessionId
-    ? `https://smart-atendance.vercel.app//student-form?session=${sessionId}`
+    ? `https://smart-atendance.vercel.app/student-form?session=${sessionId}`
     : "";
     const [classCode, setClassCode] = useState("");
   return (

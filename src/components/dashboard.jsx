@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 function Dashboard() {
     const dashcards = [
-        { icon: <SiGoogleclassroom />, name: "Classes", value: "",text:"No data yet" ,path: "/" },/* classes*/
+        { icon: <SiGoogleclassroom />, name: "Classes", value: "",text:"No data yet" ,path: "/attendance-sessions" },/* classes*/
         { icon: <IoQrCodeOutline />, name: "Active Sessions", value: "",text:"No active session", path: "/lecturerpage" },/* qr*/
         { icon: <GoPeople />, name: "Total Students", value: "",text:"No data yet", path: "/" }, /*students*/
         { icon: <LuClipboardList />, name: "Atttendance Today", value: "",text:"No data yet", path: "/attendance-data" },
