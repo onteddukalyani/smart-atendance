@@ -1,14 +1,16 @@
 .dashboard-page {
-    padding: 10px 20px 90px 20px;
+    padding: 30px 30px 90px;
 }
 
 .dash-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    padding: 18px;
+    gap: 18px;
+    padding: 0;
 }
 
 .dash-card {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -96,4 +98,20 @@
 .recent-card .icon{
     width:70px;
     height:70px
+}
+
+@media (max-width: 800px) {
+    .dashboard-page {
+        padding: 24px 16px 120px;
+    }
+
+    .dash-cards {
+        gap: 16px;
+        padding: 0 2px;
+    }
+
+    .dash-recent-activity {
+        margin-top: 14px;
+        padding: 18px;
+    }
 }

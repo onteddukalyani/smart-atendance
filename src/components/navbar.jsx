@@ -22,16 +22,6 @@ function Navbar({ formData }) {
 
             <div className="right-nav">
 
-                <div className="icon-box">
-                    <FaBell />
-                    <span className="badge">3</span>
-                </div>
-
-                <div className="icon-box">
-                    <FaEnvelope />
-                    <span className="badge">5</span>
-                </div>
-
                 <div className="profile">
 
                     {formData.image ? (
@@ -46,10 +36,7 @@ function Navbar({ formData }) {
                         </div>
                     )}
 
-                    <span>{formData.fullName || <select class="dropdownnav">
-                        <option>Student</option>
-                        <option>Lecturer</option>
-                    </select>}</span>
+                    <span>{formData.fullName || "Lecturer" }</span>
                 </div>
 
             </div>

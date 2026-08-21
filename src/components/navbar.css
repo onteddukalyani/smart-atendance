@@ -98,3 +98,9 @@
     font-size:medium;
     cursor: pointer;
 }
+
+@media (max-width: 800px) {
+    .navbar {
+        padding: 0 16px;
+    }
+}

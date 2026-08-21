@@ -28,14 +28,6 @@ function BottomNav() {
 
       </div>
 
-      <div className="nav-item">
-        <Link to="/ProfilePreview">
-          <div className="bottomicons">
-            <FaUser />
-            <span>Profile</span>
-          </div>
-        </Link>
-      </div>
 
       <div className="nav-item">
         <Link to="/settings" className="menu-link">

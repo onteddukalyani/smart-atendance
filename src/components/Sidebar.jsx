@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 function Sidebar() {
     const menu = [
         { icon: <RiDashboardFill />, text: "Dashboard", path: "/" },
-        { icon: <FaUser />, text: "Profile", path: "/profile" },
         { icon: <FaTasks />, text: "Tasks", path: "/tasks" },
         { icon: <FaCog />, text: "Settings", path: "/settings" }
     ];

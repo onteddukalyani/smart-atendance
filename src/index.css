@@ -19,15 +19,3 @@ code {
   padding: 25px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
-
-@media  (max-width:2000px){
-  .dash-cards{
-    gap:50px;
-  }
-}
-
-@media (max-width:800px) {
-  .dash-cards {
-    gap: 10px;
-  }
-}

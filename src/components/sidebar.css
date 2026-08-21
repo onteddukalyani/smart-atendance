@@ -152,3 +152,9 @@
 .menu li.active {
     background: #9f05f9;;
 }
+
+@media (max-width: 800px) {
+    .sidebar {
+        display: none;
+    }
+}
