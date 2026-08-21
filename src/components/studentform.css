@@ -1,21 +1,146 @@
-.student-form{
+.student-form {
+    box-sizing: border-box;
     min-height: calc(100vh - 80px);
-    padding: 30px 30px 120px;
+    padding: 44px 30px 120px;
     color: #1f2937;
     background: #f5f7fb;
 }
 
-.student-form .card {
-    max-width: 760px;
+.student-form form {
+    max-width: 720px;
     margin: 0 auto;
-    background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
-    border: 1px solid rgba(130, 140, 160, 0.16);
-    border-radius: 22px;
-    box-shadow: 0 18px 42px -24px rgba(100, 116, 139, 0.46);
+    padding: clamp(24px, 5vw, 42px);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    box-shadow: 0 18px 42px -24px rgba(100, 116, 139, 0.55);
+}
+
+.student-form form::before {
+    display: block;
+    width: 52px;
+    height: 5px;
+    margin-bottom: 26px;
+    content: "";
+    background: #1b7773;
+    border-radius: 999px;
+}
+
+.student-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.student-form .input-group {
+    min-width: 0;
+}
+
+.student-form label {
+    display: block;
+    margin-bottom: 9px;
+    color: #374151;
+    font-size: 0.84rem;
+    font-weight: 750;
+}
+
+.student-form .input-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 13px;
+    background: #f8fafc;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    color: #1b7773;
+    transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.student-form .input-icon:focus-within {
+    background: #ffffff;
+    border-color: #1b7773;
+    box-shadow: 0 0 0 3px rgba(27, 119, 115, 0.12);
+}
+
+.student-form input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 0;
+    color: #1f2937;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    font: inherit;
+}
+
+.student-form input::placeholder {
+    color: #94a3b8;
+}
+
+.student-form .input-group > .face-scanner,
+.student-form .input-group > div:has(.face-scanner) {
+    margin-top: 18px;
+}
+
+.student-form .button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.student-form .button-group button {
+    flex: 1;
+    min-height: 46px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 9px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 750;
+    transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.student-form .save-btn {
+    color: #ffffff;
+    background: #1b7773;
+}
+
+.student-form .reset-btn {
+    color: #475569;
+    background: #eef2f7;
+}
+
+.student-form .button-group button:hover {
+    transform: translateY(-1px);
+}
+
+.student-form .save-btn:hover {
+    background: #155f5c;
+    box-shadow: 0 7px 16px rgba(27, 119, 115, 0.2);
+}
+
+.student-form .reset-btn:hover {
+    background: #e2e8f0;
 }
 
 @media (max-width: 800px) {
     .student-form {
-        padding: 24px 16px 120px;
+        padding: 28px 16px 120px;
+    }
+
+    .student-form .form-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 420px) {
+    .student-form form {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+
+    .student-form .button-group {
+        flex-direction: column;
     }
 }

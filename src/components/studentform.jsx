@@ -11,6 +11,7 @@ import './studentform.css';
 function StudentForm({ formData, setFormData }) {
     const [checkingSession, setCheckingSession] = useState(true);
     const [expired, setExpired] = useState(false);
+    const [sessionError, setSessionError] = useState(false);
     const sessionId = new URLSearchParams(window.location.search).get("session");
 
     useEffect(() => {
@@ -64,7 +65,7 @@ function StudentForm({ formData, setFormData }) {
                     error
                 );
 
-                setExpired(true);
+                setSessionError(true);
 
             } finally {
                 setCheckingSession(false);
@@ -203,6 +204,15 @@ function StudentForm({ formData, setFormData }) {
 
 
     // EXPIRED QR
+    if (sessionError) {
+        return (
+            <div className="card">
+                <h2>Unable to check QR session</h2>
+                <p>Check your internet connection and try scanning a newly generated QR code.</p>
+            </div>
+        );
+    }
+
     if (expired) {
         return (
             <div className="card">
