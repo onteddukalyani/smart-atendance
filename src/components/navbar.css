@@ -94,13 +94,6 @@
     font-size: 15px;
 }
 
-.dropdownnav {
-    border: none;
-    outline: none;
-    font-size: medium;
-    cursor: pointer;
-}
-
 
 /* =========================
    MOBILE
@@ -118,10 +111,6 @@
         height: 42px;
         font-size: 19px;
         z-index: 1100;
-    }
-
-    .profile span {
-        display: none;
     }
 
     .profile img,
