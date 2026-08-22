@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import BottomNav from './components/bottomnav'
 import Sidebar from './components/Sidebar'
 import { Routes, Route } from "react-router-dom";
@@ -15,7 +15,19 @@ import Login from './components/login';
 import { useAuth } from './components/authcontext';
 function App() {
   const [sidebarHidden, setSidebarHidden] = useState(false);
-  const { user, logoutUser } = useAuth();
+  const [guestLoginPending, setGuestLoginPending] = useState(false);
+  const { user, loginAsGuest } = useAuth();
+  const isStudentScan = window.location.pathname === '/student-form';
+
+  useEffect(() => {
+    if (isStudentScan && !user && !guestLoginPending) {
+      setGuestLoginPending(true);
+      loginAsGuest().catch((error) => {
+        console.error('Guest sign-in failed:', error);
+        setGuestLoginPending(false);
+      });
+    }
+  }, [guestLoginPending, isStudentScan, loginAsGuest, user]);
 
   const [formData, setFormData] = useState({
     image: "",
@@ -29,6 +41,10 @@ function App() {
     gender: "",
     bio: ""
   });
+
+  if (isStudentScan && (guestLoginPending || !user)) {
+    return <div className="card"><h2>Opening attendance form...</h2></div>;
+  }
 
   if (!user) {
     return <Login />;
