@@ -82,8 +82,7 @@
 }
 
 .dash-cards > div:first-child .dash-card .card-details p:nth-child(2){
-    font-size:1.2rem;
-    font-weight:700;
+    font-weight:500;
 }
 
 .dashboard-page .card-details p:nth-child(3) {

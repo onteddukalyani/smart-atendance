@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "./authcontext";
-import "./dashboard.css";
+import './activesessions.css';
 
 function ActiveSessions() {
     const { user } = useAuth();

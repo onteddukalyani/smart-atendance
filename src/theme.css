@@ -169,10 +169,6 @@ body {
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
 }
 
-.nav-profile-placeholder {
-  color: var(--nav-text);
-  background: var(--accent);
-}
 
 [data-theme="midnight"] .dash-card,
 [data-theme="midnight"] .dash-recent-activity,
@@ -597,3 +593,519 @@ body {
   background: #263a5b;
 }
 
+/* =========================================
+   ACTIVE SESSIONS — SHARED THEME
+   ========================================= */
+
+/* LIGHT */
+[data-theme="light"] .active-sessions-page {
+    color: #172b4d;
+}
+
+[data-theme="light"] .active-sessions-panel {
+    color: #172b4d;
+    background: #ffffff;
+    border-color: #dbe3ee;
+}
+
+[data-theme="light"] .active-sessions-heading h2 {
+    color: #172b4d;
+}
+
+[data-theme="light"] .active-session-card {
+    color: #172b4d;
+    background: #ffffff;
+    border-color: #dbe3ee;
+}
+
+[data-theme="light"] .active-session-card strong {
+    color: #172b4d;
+}
+
+[data-theme="light"] .active-session-card span {
+    color: #64748b;
+}
+
+[data-theme="light"] .active-session-card small {
+    color: #6d28d9;
+    background: #f1edff;
+}
+
+[data-theme="light"] .active-session-card canvas {
+    background: #ffffff;
+    border-color: #dbe3ee;
+}
+
+[data-theme="light"] .active-sessions-empty {
+    color: #64748b;
+    background: #ffffff;
+    border-color: #c4b5fd;
+}
+
+
+/* =========================================
+   MIDNIGHT / DARK
+   ========================================= */
+
+[data-theme="midnight"] .active-sessions-page {
+    color: #f8fafc;
+}
+
+
+/* Main panel */
+[data-theme="midnight"] .active-sessions-panel {
+    color: #f8fafc;
+    background: #1b2a40;
+    border-color: #34465f;
+
+    box-shadow:
+        0 18px 42px -24px #000000;
+}
+
+
+/* Heading */
+[data-theme="midnight"] .active-sessions-heading h2 {
+    color: #f8fafc;
+}
+
+[data-theme="midnight"] .dashboard-section-kicker {
+    color: #a5b4fc;
+}
+
+
+/* New session button */
+[data-theme="midnight"] .new-session-link {
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #6366f1,
+        #4338ca
+    );
+
+    box-shadow:
+        0 8px 20px rgba(67, 56, 202, 0.35);
+}
+
+[data-theme="midnight"] .new-session-link:hover {
+    filter: brightness(1.08);
+}
+
+
+/* Session cards */
+[data-theme="midnight"] .active-session-card {
+    color: #f8fafc;
+
+    background: #1b2a40;
+    border-color: #34465f;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Card hover */
+[data-theme="midnight"] .active-session-card:hover {
+    color: #ffffff;
+
+    background: #243653;
+    border-color: #818cf8;
+
+    box-shadow:
+        0 0 0 3px rgba(165, 180, 252, 0.12),
+        0 18px 42px -24px #000000;
+}
+
+
+/* Class name */
+[data-theme="midnight"] .active-session-card strong {
+    color: #f8fafc;
+}
+
+
+/* Room */
+[data-theme="midnight"] .active-session-card span {
+    color: #b5c3d6;
+}
+
+
+/* Expiry badge */
+[data-theme="midnight"] .active-session-card small {
+    color: #c7d2fe;
+    background: #263a5b;
+    border: 1px solid #536987;
+}
+
+
+/* QR code container */
+[data-theme="midnight"] .active-session-card canvas {
+    background: #ffffff;
+    border-color: #536987;
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Empty state */
+[data-theme="midnight"] .active-sessions-empty {
+    color: #b5c3d6;
+
+    background: #1b2a40;
+    border-color: #536987;
+}
+
+
+/* Focus accessibility */
+[data-theme="midnight"] .new-session-link:focus-visible,
+[data-theme="midnight"] .active-session-card:focus-visible {
+    outline: 3px solid #a5b4fc;
+    outline-offset: 3px;
+}
+
+
+/* =========================================
+   MIDNIGHT MOBILE
+   ========================================= */
+
+@media (max-width: 800px) {
+
+    [data-theme="midnight"] .active-sessions-panel {
+        background: #1b2a40;
+        border-color: #34465f;
+    }
+
+    [data-theme="midnight"] .active-session-card {
+        background: #1b2a40;
+        border-color: #34465f;
+    }
+
+    [data-theme="midnight"] .active-session-card:hover {
+        background: #243653;
+    }
+}
+
+/* =========================================
+   STUDENT FORM — SHARED THEME
+   ========================================= */
+
+/* ---------- BASE / LIGHT ---------- */
+
+.student-form {
+    color: var(--text-main);
+    background: var(--page-bg);
+}
+
+.student-form form {
+    color: var(--text-main);
+    background: var(--surface);
+    border-color: color-mix(
+        in srgb,
+        var(--accent) 18%,
+        transparent
+    );
+
+    box-shadow: 0 18px 42px -24px var(--shadow);
+}
+
+
+/* Top accent line */
+.student-form form::before {
+    background: var(--accent);
+}
+
+
+/* Labels */
+.student-form label {
+    color: var(--text-main);
+}
+
+
+/* Input wrapper */
+.student-form .input-icon {
+    color: var(--accent);
+
+    background: var(--surface-soft);
+
+    border-color: color-mix(
+        in srgb,
+        var(--accent) 20%,
+        transparent
+    );
+}
+
+
+/* Input focus */
+.student-form .input-icon:focus-within {
+    background: var(--surface);
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--accent) 15%,
+            transparent
+        );
+}
+
+
+/* Input */
+.student-form input {
+    color: var(--text-main);
+    background: transparent;
+}
+
+
+/* Placeholder */
+.student-form input::placeholder {
+    color: var(--text-muted);
+}
+
+
+/* Submit button */
+.student-form .save-btn {
+    color: var(--nav-text);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent-strong)
+        );
+}
+
+
+/* Reset button */
+.student-form .reset-btn {
+    color: var(--text-main);
+    background: var(--surface-soft);
+
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--accent) 18%,
+            transparent
+        );
+}
+
+
+/* Button hover */
+.student-form .save-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent-strong),
+            var(--accent)
+        );
+
+    box-shadow:
+        0 7px 18px
+        color-mix(
+            in srgb,
+            var(--accent) 22%,
+            transparent
+        );
+}
+
+.student-form .reset-btn:hover {
+    background:
+        color-mix(
+            in srgb,
+            var(--accent) 9%,
+            var(--surface-soft)
+        );
+}
+
+
+/* =========================================
+   MIDNIGHT
+   ========================================= */
+
+[data-theme="midnight"] .student-form {
+    color: #f8fafc;
+    background-color: #101827;
+
+    background-image:
+        linear-gradient(
+            rgba(129, 140, 248, 0.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(129, 140, 248, 0.08) 1px,
+            transparent 1px
+        );
+}
+
+
+/* Form card */
+[data-theme="midnight"] .student-form form {
+    color: #f8fafc;
+    background: #1b2a40;
+
+    border-color: #34465f;
+
+    box-shadow:
+        0 18px 42px -24px #000000;
+}
+
+
+/* Accent line */
+[data-theme="midnight"] .student-form form::before {
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #4338ca
+        );
+}
+
+
+/* Labels */
+[data-theme="midnight"] .student-form label {
+    color: #f8fafc;
+}
+
+
+/* Input wrapper */
+[data-theme="midnight"] .student-form .input-icon {
+    color: #93c5fd;
+
+    background: #152135;
+
+    border-color: #536987;
+}
+
+
+/* Input wrapper focus */
+[data-theme="midnight"] .student-form .input-icon:focus-within {
+    color: #a5b4fc;
+
+    background: #1b2a40;
+
+    border-color: #a5b4fc;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(165, 180, 252, 0.20);
+}
+
+
+/* Input */
+[data-theme="midnight"] .student-form input {
+    color: #f8fafc;
+    background: transparent;
+}
+
+
+/* Placeholder */
+[data-theme="midnight"] .student-form input::placeholder {
+    color: #91a4bd;
+}
+
+
+/* Submit */
+[data-theme="midnight"] .student-form .save-btn {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #4338ca
+        );
+}
+
+
+/* Reset */
+[data-theme="midnight"] .student-form .reset-btn {
+    color: #e2e8f0;
+    background: #263a5b;
+
+    border-color: #536987;
+}
+
+
+/* Submit hover */
+[data-theme="midnight"] .student-form .save-btn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #818cf8,
+            #4f46e5
+        );
+
+    box-shadow:
+        0 0 0 3px
+        rgba(165, 180, 252, 0.15),
+        0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Reset hover */
+[data-theme="midnight"] .student-form .reset-btn:hover {
+    color: #ffffff;
+    background: #263a5b;
+
+    border-color: #818cf8;
+}
+
+
+/* =========================================
+   MIDNIGHT FOCUS
+   ========================================= */
+
+[data-theme="midnight"] .student-form input:focus {
+    outline: none;
+}
+
+
+[data-theme="midnight"] .student-form
+.input-icon:focus-within {
+    outline: 2px solid rgba(165, 180, 252, 0.25);
+    outline-offset: 1px;
+}
+
+
+/* =========================================
+   DISABLED SUBMIT
+   ========================================= */
+
+.student-form .save-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+    transform: none;
+}
+
+
+[data-theme="midnight"] .student-form .save-btn:disabled {
+    background: #3b4a68;
+    box-shadow: none;
+}
+
+
+/* =========================================
+   ERROR / EXPIRED CARD
+   ========================================= */
+
+/*
+   Your expired/error states use:
+       <div className="card">
+
+   The shared .card theme will handle the background.
+   These rules make the text match the theme.
+*/
+
+[data-theme="midnight"] .card {
+    color: #f8fafc;
+}
+
+[data-theme="midnight"] .card h2 {
+    color: #f8fafc;
+}
+
+[data-theme="midnight"] .card p {
+    color: #b5c3d6;
+}
