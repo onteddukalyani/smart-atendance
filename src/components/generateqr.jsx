@@ -4,21 +4,28 @@ import { createAttendanceSession } from "./createsession";
 import "./generateqr.css"
 function GenerateQR() {
   const [sessionId, setSessionId] = useState("");
-  const [roomNo, setRoomNo] = useState("");
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+const [roomNo, setRoomNo] = useState("");
+const [courseCode, setCourseCode] = useState("");
+const [classCode, setClassCode] = useState("");
+const [isGenerating, setIsGenerating] = useState(false);
+const [errorMessage, setErrorMessage] = useState("");
   const handleGenerateQR = async () => {
     if (!classCode || !roomNo.trim()) {
         alert("Please select a class.");
         return;
     }
+    if (!courseCode.trim()) {
+        alert("Plese Enter Course Code.");
+        return;
+    }
   setIsGenerating(true);
   setErrorMessage("");
     try {
-        const id = await createAttendanceSession(classCode, roomNo.trim());
+        const id = await createAttendanceSession(classCode, courseCode.trim(),roomNo.trim());
         setSessionId(id);
         console.log("Session ID:", id);
         console.log("Class Code:", classCode);
+        console.log("Course Code:", courseCode);
     } catch (error) {
         console.error("Error creating session:", error);
     setErrorMessage(error.message || "Could not create an attendance session.");
@@ -29,7 +36,6 @@ function GenerateQR() {
   const attendanceUrl = sessionId
     ? `${window.location.origin}/student-form?session=${sessionId}`
     : "";
-    const [classCode, setClassCode] = useState("");
   return (
     <div className="qrpage">
       <div className="qrpage-header">
@@ -58,6 +64,15 @@ function GenerateQR() {
             <option value="DSAI">DSAI</option>
             <option value="ECE">ECE</option>
           </select>
+          <label htmlFor="course-code">Course Code</label>
+          <input
+            id="course-code"
+            type="text"
+            value={courseCode}
+            onChange={(e) => setCourseCode(e.target.value)}
+            placeholder="e.g. CS171"
+            required
+          />
           <label htmlFor="room-number">Room number</label>
           <input
             id="room-number"
@@ -80,7 +95,7 @@ function GenerateQR() {
                 <span className="qr-status-dot" />
                 <div>
                   <p className="qrpage-kicker">SESSION READY</p>
-                  <h2>{classCode} · {roomNo}</h2>
+                  <h2>{courseCode} · {classCode} · {roomNo}</h2>
                 </div>
               </div>
               <div className="qr-code-frame">
