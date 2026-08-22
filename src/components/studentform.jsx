@@ -12,6 +12,8 @@ function StudentForm({ formData, setFormData }) {
     const [checkingSession, setCheckingSession] = useState(true);
     const [expired, setExpired] = useState(false);
     const [sessionError, setSessionError] = useState(false);
+    const [sessionErrorMessage, setSessionErrorMessage] = useState("");
+    const [submitting, setSubmitting] = useState(false);
     const sessionId = new URLSearchParams(window.location.search).get("session");
 
     useEffect(() => {
@@ -40,6 +42,13 @@ function StudentForm({ formData, setFormData }) {
 
                 const sessionData = sessionSnapshot.data();
 
+                if (!sessionData.ownerId) {
+                    setSessionErrorMessage("This QR code is outdated. Please ask the lecturer to generate a new QR code.");
+                    setSessionError(true);
+                    setCheckingSession(false);
+                    return;
+                }
+
                 const currentTime = Date.now();
 
                 if (
@@ -66,6 +75,7 @@ function StudentForm({ formData, setFormData }) {
                 );
 
                 setSessionError(true);
+                setSessionErrorMessage("Check your internet connection and scan a newly generated QR code.");
 
             } finally {
                 setCheckingSession(false);
@@ -90,6 +100,10 @@ function StudentForm({ formData, setFormData }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (submitting) {
+            return;
+        }
+
         if (!sessionId) {
             alert("This QR code does not contain a session.");
             return;
@@ -99,6 +113,8 @@ function StudentForm({ formData, setFormData }) {
             alert("Please enter your roll number.");
             return;
         }
+
+        setSubmitting(true);
 
         try {
 
@@ -119,6 +135,11 @@ function StudentForm({ formData, setFormData }) {
             }
 
             const sessionData = sessionSnapshot.data();
+
+            if (!sessionData.ownerId) {
+                alert("This QR code is outdated. Please ask the lecturer to generate a new QR code.");
+                return;
+            }
 
             if (
                 Date.now() >= sessionData.expiresAt ||
@@ -182,6 +203,8 @@ function StudentForm({ formData, setFormData }) {
                 "❌ Could not save attendance: " +
                 error.message
             );
+        } finally {
+            setSubmitting(false);
         }
     };
 
@@ -208,8 +231,8 @@ function StudentForm({ formData, setFormData }) {
     if (sessionError) {
         return (
             <div className="card">
-                <h2>Unable to check QR session</h2>
-                <p>Check your internet connection and try scanning a newly generated QR code.</p>
+                <h2>Unable to use this QR session</h2>
+                <p>{sessionErrorMessage}</p>
             </div>
         );
     }
@@ -296,9 +319,9 @@ function StudentForm({ formData, setFormData }) {
                     <button
                         className="save-btn"
                         type="submit"
-                        onClick={handleSubmit}
+                        disabled={submitting}
                     >
-                        Submit
+                        {submitting ? "Saving..." : "Submit"}
                     </button>
 
                     <button

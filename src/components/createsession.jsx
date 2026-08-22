@@ -11,8 +11,8 @@ export async function createAttendanceSession(classCode, roomNo) {
       roomNo: roomNo,
       createdAt: now,
       expiresAt: expiresAt,
-      active: true
-      ,ownerId: auth.currentUser.uid
+      active: true,
+      ownerId: auth.currentUser.uid
      }
   );
   return docRef.id;
