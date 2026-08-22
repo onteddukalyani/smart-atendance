@@ -71,31 +71,26 @@ function Dashboard() {
     const dashcards = [
         { icon: <IoAddCircleOutline />, name: "Take Attendance", value: "Start", path: "/lecturerpage", description: "New class session" },
         { icon: <SiGoogleclassroom />, name: "Classes", value: counts.sessions, path: "/attendance-sessions" },
-        { icon: <IoQrCodeOutline />, name: "Active Sessions", value: counts.activeSessions, path: "/lecturerpage" },
+        { icon: <IoQrCodeOutline />, name: "Active Sessions", value: counts.activeSessions, path: "/active-sessions" },
         { icon: <GoPeople />, name: "Total Students", value: counts.students, path: "/" },
         { icon: <LuClipboardList />, name: "Attendance Today", value: counts.attendanceToday, path: "/attendance-data" },
     ];
     return (
         <div className="dashboard-page">
             <div className="dash-cards">
-                {
-                    dashcards.map((item, index) => (
-                        <div key={index}>
-                            <Link to={item.path} className={`dash-link dash-card ${item.name === "Take Attendance" ? "action-card" : ""}`} >
-                                <span className="dash-icons">
-                                    {item.icon}
-                                </span>
-                                <div className="card-details">
-                                    <p>{item.name}</p>
-                                    <p>{item.value}</p>
-                                    <p>{item.description || (item.name === "Attendance Today" ? "Submissions today" : "From Database")}</p>
-                                </div>
-                            </Link>
-                        </div>
-                    ))
-                }
-            </div>
-            <br></br>
+                {dashcards.map((item, index) => (
+                    <div key={index}>
+                        <Link to={item.path} className="dash-link dash-card">
+                            <span className="dash-icons">{item.icon}</span>
+                            <div className="card-details">
+                                <p>{item.name}</p>
+                                <p>{item.value}</p>
+                                <p>{item.description || (item.name === "Attendance Today" ? "Submissions today" : "From Database")}</p>
+                            </div>
+                        </Link>
+                    </div>
+                ))}
+            </div><br></br>
             <div className="dash-recent-activity">
                 <h2>Recent Attendance Sessions</h2>
                 {recentSessions.length === 0 ? (
@@ -110,11 +105,7 @@ function Dashboard() {
                         {recentSessions.map((session) => {
                             const sessionDate = session.createdAt ? new Date(session.createdAt) : null;
                             return (
-                                <Link
-                                    to={`/attendance-sessions/${session.id}`}
-                                    className="recent-session"
-                                    key={session.id}
-                                >
+                                <Link to={`/attendance-sessions/${session.id}`} className="recent-session" key={session.id}>
                                     <span className="recent-session-icon"><SlCalender /></span>
                                     <span className="recent-session-info">
                                         <strong>{session.classCode || "Class"}</strong>

@@ -61,7 +61,7 @@ function FaceScanner() {
         };
     },[]);
     return (
-        <div style={{textAlign:"center" }}>
+        <div className="face-scanner" style={{textAlign:"center" }}>
             <h2>Face Verification</h2>
             <video ref={videoRef} autoPlay playsInline muted style={{width:"100%",maxWidth:"400px",borderRadius:"15px",}}/>
             {error && <p>{error}</p>}

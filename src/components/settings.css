@@ -169,9 +169,6 @@
 
 .theme-option label[for="theme-light"]::before { background: linear-gradient(135deg, #f8fafc 50%, #c4b5fd 50%); }
 .theme-option label[for="theme-midnight"]::before { background: linear-gradient(135deg, #111827 50%, #6366f1 50%); }
-.theme-option label[for="theme-ocean"]::before { background: linear-gradient(135deg, #d8f1f4 50%, #087f8c 50%); }
-.theme-option label[for="theme-forest"]::before { background: linear-gradient(135deg, #dff1e2 50%, #277548 50%); }
-.theme-option label[for="theme-sunset"]::before { background: linear-gradient(135deg, #ffe5d2 50%, #c45128 50%); }
 
 .theme-option input:focus-visible + label {
     outline: 3px solid rgba(99, 102, 241, 0.3);
@@ -230,68 +227,3 @@
     background: #1b2a40;
 }
 
-[data-theme="ocean"] body {
-    background: #eef8fb;
-}
-
-[data-theme="ocean"] .settings-card,
-[data-theme="ocean"] .dash-recent-activity,
-[data-theme="ocean"] .dash-card {
-    border-color: #b8dfe8;
-    background: linear-gradient(180deg, #ffffff 0%, #e8f7fa 100%);
-}
-
-[data-theme="ocean"] .dash-icons,
-[data-theme="ocean"] .recent-session-icon {
-    color: #087f8c;
-    background: #d8f1f4;
-}
-
-[data-theme="forest"] body {
-    background: #f1f8f1;
-}
-
-[data-theme="forest"] .settings-card,
-[data-theme="forest"] .dash-recent-activity,
-[data-theme="forest"] .dash-card {
-    border-color: #c5ddc5;
-    background: linear-gradient(180deg, #ffffff 0%, #edf7ed 100%);
-}
-
-[data-theme="forest"] .dash-icons,
-[data-theme="forest"] .recent-session-icon {
-    color: #277548;
-    background: #dff1e2;
-}
-
-[data-theme="sunset"] body {
-    background: #fff7f0;
-}
-
-[data-theme="sunset"] .settings-card,
-[data-theme="sunset"] .dash-recent-activity,
-[data-theme="sunset"] .dash-card {
-    border-color: #f1d0b8;
-    background: linear-gradient(180deg, #ffffff 0%, #fff1e6 100%);
-}
-
-[data-theme="sunset"] .dash-icons,
-[data-theme="sunset"] .recent-session-icon {
-    color: #c45128;
-    background: #ffe5d2;
-}
-
-[data-theme="ocean"] .settings-eyebrow,
-[data-theme="ocean"] .recent-start-link {
-    color: #087f8c;
-}
-
-[data-theme="forest"] .settings-eyebrow,
-[data-theme="forest"] .recent-start-link {
-    color: #277548;
-}
-
-[data-theme="sunset"] .settings-eyebrow,
-[data-theme="sunset"] .recent-start-link {
-    color: #c45128;
-}

@@ -1,6 +1,5 @@
-
 .navbar {
-    margin-top:0;
+    margin-top: 0;
     height: 80px;
     background: var(--surface);
     display: flex;
@@ -17,6 +16,9 @@
 }
 
 .menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 45px;
     height: 45px;
     border: none;
@@ -95,12 +97,36 @@
 .dropdownnav {
     border: none;
     outline: none;
-    font-size:medium;
+    font-size: medium;
     cursor: pointer;
 }
 
+
+/* =========================
+   MOBILE
+   ========================= */
+
 @media (max-width: 800px) {
     .navbar {
+        height: 65px;
         padding: 0 16px;
+    }
+
+    .menu-btn {
+        display: flex;
+        width: 42px;
+        height: 42px;
+        font-size: 19px;
+        z-index: 1100;
+    }
+
+    .profile span {
+        display: none;
+    }
+
+    .profile img,
+    .nav-profile-placeholder {
+        width: 40px;
+        height: 40px;
     }
 }

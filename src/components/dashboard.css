@@ -1,6 +1,6 @@
 .dashboard-page {
     padding: 30px 30px 90px;
-    text-align: left;
+    text-align: center;
 }
 
 .dash-cards {
@@ -69,7 +69,7 @@
 }
 
 .dashboard-page .card-details p:nth-child(2) {
-    font-size: 2rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: #111827;
 }

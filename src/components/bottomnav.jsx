@@ -5,11 +5,12 @@ import {
   FaBook,
   FaCog,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 function BottomNav() {
+  const location = useLocation();
   return (
     <div className="bottom-nav">
-      <div className="nav-item">
+      <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`}>
         <Link to="/" className="menu-link">
         <div className="bottomicons"><FaHome />
           <span>Home</span></div>
@@ -17,19 +18,17 @@ function BottomNav() {
         </Link>
       </div>
 
-      <div className="nav-item">
-        {/* <Link to="/resources" className="menu-link"> */}
-        <div className="bottomicons">
-          <FaBook />
-          <span>Courses</span>
-        </div>
-
-        {/* </Link> */}
-
+      <div className={`nav-item ${location.pathname === "/attendance-sessions" ? "active" : ""}`}>
+        <Link to="/attendance-sessions" className="menu-link">
+          <div className="bottomicons">
+            <FaBook />
+            <span>Courses</span>
+          </div>
+        </Link>
       </div>
 
 
-      <div className="nav-item">
+      <div className={`nav-item ${location.pathname === "/settings" ? "active" : ""}`}>
         <Link to="/settings" className="menu-link">
         <div className="bottomicons">
 

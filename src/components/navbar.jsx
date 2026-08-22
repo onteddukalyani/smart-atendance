@@ -1,15 +1,13 @@
 import {
     FaBars,
-    FaBell,
-    FaEnvelope,
-    FaChevronDown,
+    FaTimes,
     FaUser
 } from "react-icons/fa";
 import React, { useState } from "react";
 import './navbar.css'
 import { useAuth } from './authcontext';
 
-function Navbar({ formData, onMenuClick }) {
+function Navbar({ formData, sidebarHidden, onMenuClick }) {
     const { user } = useAuth();
     const [profileImageFailed, setProfileImageFailed] = useState(false);
     const profileName = user?.displayName || formData.fullName || (user?.isAnonymous ? "Guest" : "Profile");
@@ -19,7 +17,11 @@ function Navbar({ formData, onMenuClick }) {
 
             <div className="left-nav">
 
-                <button className="menu-btn" onClick={onMenuClick} aria-label="Toggle sidebar">
+                <button
+                    className="menu-btn"
+                    onClick={onMenuClick}
+                    aria-label="Open sidebar"
+                >
                     <FaBars />
                 </button>
 

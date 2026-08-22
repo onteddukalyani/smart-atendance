@@ -1,0 +1,598 @@
+/* Shared theme layer loaded after page styles so every route uses the same palette. */
+
+body {
+  background: var(--page-bg);
+  color: var(--text-main);
+}
+
+.app,
+.app-content,
+.dashboard-page,
+.attendance-data-page,
+.qrpage,
+.student-form {
+  color: var(--text-main);
+}
+
+.navbar,
+.card,
+.dash-card,
+.dash-recent-activity,
+.qr-builder,
+.qr-result,
+.attendance-data-page table,
+.student-form,
+.settings-card {
+  color: var(--text-main);
+  background: var(--surface);
+  border-color: color-mix(in srgb, var(--accent) 18%, transparent);
+  box-shadow: 0 18px 42px -24px var(--shadow);
+}
+
+.navbar {
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+.sidebar,
+.bottom-nav {
+  color: var(--nav-text);
+  background: var(--nav-bg);
+}
+
+[data-theme="light"] .sidebar,
+[data-theme="light"] .bottom-nav {
+  background: linear-gradient(160deg, #17132f 0%, #312e81 100%);
+}
+
+[data-theme="midnight"] .sidebar,
+[data-theme="midnight"] .bottom-nav {
+  background: linear-gradient(160deg, #070b16 0%, #172554 100%);
+}
+
+
+.logo,
+.menu li a,
+.menu-link {
+  color: var(--nav-text);
+}
+
+[data-theme="light"] .menu li.active,
+[data-theme="light"] .menu li:hover {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+}
+
+[data-theme="midnight"] .menu li.active,
+[data-theme="midnight"] .menu li:hover {
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+}
+
+
+.logo,
+.qr-section-heading,
+.profile-detail,
+.attendance-data-page th,
+.attendance-data-page td {
+  border-color: color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.logo-icon,
+.dash-icons,
+.recent-session-icon,
+.qrpage-kicker,
+.settings-eyebrow,
+.attendance-data-page h2,
+.qr-result-heading h2 {
+  color: var(--accent);
+}
+
+.dash-icons,
+.recent-session-icon,
+.qr-empty-mark,
+.menu-btn,
+.icon-box {
+  background: color-mix(in srgb, var(--accent) 13%, var(--surface));
+}
+
+.dash-card:hover,
+.recent-session:hover,
+.theme-option input:checked + label {
+  border-color: var(--accent);
+}
+
+.dashboard-page .card-details p,
+.recent-session,
+.qrpage h1,
+.qrpage h2,
+.qrpage label,
+.qr-result h2,
+.attendance-data-page h1,
+.attendance-data-page h2,
+.attendance-data-page td,
+.settings-header h1,
+.settings-card h2,
+.profile-summary h3,
+.profile-detail dd {
+  color: var(--text-main);
+}
+
+.dashboard-page .card-details p:nth-child(3),
+.recent-session-info span,
+.recent-session-time,
+.settings-header p,
+.settings-card p,
+.profile-detail dt,
+.qrpage-header > p,
+.qr-section-heading p,
+.qr-result-note,
+.attendance-data-page p {
+  color: var(--text-muted);
+}
+
+.recent-session,
+.attendance-data-page tr,
+.theme-option label,
+.qrpage select,
+.qrpage input,
+.student-form input {
+  color: var(--text-main);
+  background: var(--surface-soft);
+  border-color: color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.recent-start-link,
+.qrpage button,
+.save-btn,
+.genqr-btn,
+.attendance-data-page button {
+  color: var(--nav-text);
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.recent-start-link:hover,
+.qrpage button:hover,
+.save-btn:hover,
+.genqr-btn:hover,
+.attendance-data-page button:hover {
+  filter: brightness(0.92);
+}
+
+.reset-btn,
+.remove-session-btn {
+  color: var(--text-main);
+  background: var(--surface-soft);
+  border-color: color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.profile-avatar-fallback {
+  color: var(--nav-text);
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+}
+
+.nav-profile-placeholder {
+  color: var(--nav-text);
+  background: var(--accent);
+}
+
+[data-theme="midnight"] .dash-card,
+[data-theme="midnight"] .dash-recent-activity,
+[data-theme="midnight"] .qr-builder,
+[data-theme="midnight"] .qr-result,
+[data-theme="midnight"] .attendance-data-page table,
+[data-theme="midnight"] .student-form,
+[data-theme="midnight"] .settings-card {
+  background: var(--surface);
+}
+
+[data-theme="midnight"] .qrpage select,
+[data-theme="midnight"] .qrpage input,
+[data-theme="midnight"] .student-form input,
+[data-theme="midnight"] .theme-option label {
+  color: var(--text-main);
+  background: var(--surface-soft);
+}
+
+[data-theme="midnight"] .dashboard-page .card-details p,
+[data-theme="midnight"] .dashboard-page .card-details p:first-child,
+[data-theme="midnight"] .dashboard-page .card-details p:nth-child(2),
+[data-theme="midnight"] .dashboard-page .card-details p:nth-child(3),
+[data-theme="midnight"] .recent-session,
+[data-theme="midnight"] .recent-session-info span,
+[data-theme="midnight"] .recent-session-time,
+[data-theme="midnight"] .qrpage,
+[data-theme="midnight"] .qrpage h1,
+[data-theme="midnight"] .qrpage h2,
+[data-theme="midnight"] .qrpage label,
+[data-theme="midnight"] .student-form,
+[data-theme="midnight"] .student-form label,
+[data-theme="midnight"] .attendance-data-page,
+[data-theme="midnight"] .attendance-data-page h2,
+[data-theme="midnight"] .attendance-data-page td,
+[data-theme="midnight"] .settings-header h1,
+[data-theme="midnight"] .settings-card h2 {
+  color: #f8fafc;
+}
+
+[data-theme="midnight"] .qrpage-header > p,
+[data-theme="midnight"] .qr-section-heading p,
+[data-theme="midnight"] .qr-result-note,
+[data-theme="midnight"] .student-form p,
+[data-theme="midnight"] .attendance-data-page p,
+[data-theme="midnight"] .settings-header p,
+[data-theme="midnight"] .settings-card p,
+[data-theme="midnight"] .profile-detail dt {
+  color: #b5c3d6;
+}
+
+[data-theme="midnight"] .dash-card,
+[data-theme="midnight"] .dash-recent-activity,
+[data-theme="midnight"] .recent-session,
+[data-theme="midnight"] .qr-builder,
+[data-theme="midnight"] .qr-result,
+[data-theme="midnight"] .student-form,
+[data-theme="midnight"] .attendance-data-page table {
+  background: #1b2a40;
+  border-color: #34465f;
+}
+
+[data-theme="midnight"] .recent-session:hover {
+  background: #243653;
+  border-color: #818cf8;
+}
+
+[data-theme="midnight"] .student-form input,
+[data-theme="midnight"] .qrpage input,
+[data-theme="midnight"] .qrpage select {
+  color: #f8fafc;
+  background: #152135;
+  border-color: #536987;
+}
+
+[data-theme="midnight"] .student-form input::placeholder,
+[data-theme="midnight"] .qrpage input::placeholder {
+  color: #91a4bd;
+}
+
+[data-theme="midnight"] .attendance-data-page th {
+  color: #dbeafe;
+  background: #253957;
+}
+
+[data-theme="midnight"] .attendance-data-page tr:nth-child(even) td {
+  background: #172940;
+}
+
+[data-theme="midnight"] .menu li:hover,
+[data-theme="midnight"] .logout:hover {
+  background: #263a5b;
+}
+
+[data-theme="midnight"] .menu-btn:hover,
+[data-theme="midnight"] .icon-box:hover {
+  color: #ffffff;
+  background: #6366f1;
+}
+
+[data-theme="midnight"] .menu-btn:focus-visible,
+[data-theme="midnight"] .icon-box:focus-visible,
+[data-theme="midnight"] .logout:focus-visible,
+[data-theme="midnight"] .theme-option input:focus-visible + label,
+[data-theme="midnight"] .qrpage input:focus,
+[data-theme="midnight"] .qrpage select:focus,
+[data-theme="midnight"] .student-form input:focus {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+[data-theme="midnight"] .dash-card:hover,
+[data-theme="midnight"] .qr-builder button:hover,
+[data-theme="midnight"] .genqr-btn:hover:not(:disabled),
+[data-theme="midnight"] .save-btn:hover,
+[data-theme="midnight"] .reset-btn:hover,
+[data-theme="midnight"] .attendance-data-page button:hover {
+  border-color: #a5b4fc;
+  box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.18), 0 18px 42px -24px #000000;
+}
+
+[data-theme="midnight"] .theme-option label:hover {
+  color: #ffffff;
+  background: #263a5b;
+  border-color: #818cf8;
+}
+
+[data-theme="midnight"] .bottom-nav .nav-item:hover,
+[data-theme="midnight"] .bottom-nav .nav-item.active {
+  color: #c7d2fe;
+}
+
+[data-theme="midnight"] .student-form form,
+[data-theme="midnight"] .qr-result-ready,
+[data-theme="midnight"] .qr-code-frame,
+[data-theme="midnight"] .attendance-data-page > p,
+[data-theme="midnight"] .login-shell,
+[data-theme="midnight"] .login-form {
+  color: #f8fafc;
+  background: #1b2a40;
+  border-color: #34465f;
+}
+
+[data-theme="midnight"] .qrpage,
+[data-theme="midnight"] .student-form,
+[data-theme="midnight"] .login-page,
+[data-theme="midnight"] .attendance-data-page {
+  color: #f8fafc;
+  background-color: #101827;
+  background-image: linear-gradient(rgba(129, 140, 248, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(129, 140, 248, 0.08) 1px, transparent 1px);
+}
+
+[data-theme="midnight"] .attendance-data-page > p {
+  color: #dbeafe;
+  background: #1b2a40;
+}
+
+[data-theme="midnight"] .recent-card .icon {
+  color: #a5b4fc;
+}
+
+[data-theme="midnight"] .recent-card p {
+  color: #f8fafc;
+}
+
+[data-theme="midnight"] .recent-card p:nth-of-type(2) {
+  color: #b5c3d6;
+}
+
+[data-theme="midnight"] .recent-start-link {
+  color: #ffffff;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+}
+
+[data-theme="midnight"] .login-shell {
+  background: #1b2a40;
+  border-color: #34465f;
+}
+
+[data-theme="midnight"] .login-intro h1,
+[data-theme="midnight"] .login-intro p,
+[data-theme="midnight"] .login-caption {
+  color: #f8fafc;
+}
+
+[data-theme="midnight"] .student-form .input-icon {
+  color: #93c5fd;
+  background: #152135;
+  border-color: #536987;
+}
+
+[data-theme="midnight"] .student-form .input-icon:focus-within {
+  background: #1b2a40;
+  border-color: #a5b4fc;
+  box-shadow: 0 0 0 3px rgba(165, 180, 252, 0.2);
+}
+
+[data-theme="midnight"] .student-form .save-btn,
+[data-theme="midnight"] .genqr-btn,
+[data-theme="midnight"] .attendance-data-page td button:not(.remove-session-btn) {
+  color: #ffffff;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+}
+
+[data-theme="midnight"] .student-form .reset-btn {
+  color: #e2e8f0;
+  background: #263a5b;
+}
+
+[data-theme="midnight"] .qr-step {
+  color: #ffffff;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+}
+
+[data-theme="midnight"] .qr-empty-mark {
+  color: #c7d2fe;
+  background: #263a5b;
+  border-color: #818cf8;
+}
+
+[data-theme="midnight"] .qr-expiry {
+  color: #b5c3d6;
+}
+
+[data-theme="midnight"] .qr-expiry strong {
+  color: #c7d2fe;
+}
+
+[data-theme="midnight"] .attendance-data-page tbody tr,
+[data-theme="midnight"] .attendance-data-page tbody tr:nth-child(even),
+[data-theme="midnight"] .attendance-data-page tbody tr:hover {
+  color: #f8fafc;
+  background: #1b2a40;
+}
+
+[data-theme="midnight"] .attendance-data-page tbody tr:hover {
+  background: #263a5b;
+}
+
+[data-theme="midnight"] .attendance-data-page td {
+  color: #f8fafc;
+  border-bottom-color: #34465f;
+}
+
+[data-theme="midnight"] .login-intro {
+  color: #ffffff;
+  background: linear-gradient(145deg, #070b16 0%, #172554 100%);
+}
+
+[data-theme="midnight"] .login-form h2 {
+  color: #f8fafc;
+}
+
+[data-theme="midnight"] .login-form > p,
+[data-theme="midnight"] .login-privacy {
+  color: #b5c3d6;
+}
+
+[data-theme="midnight"] .login-button-guest {
+  color: #e2e8f0;
+  background: #263a5b;
+  border-color: #536987;
+}
+
+/* Final text contrast pass for every page in both supported modes. */
+[data-theme="light"] .dashboard-page,
+[data-theme="light"] .qrpage,
+[data-theme="light"] .student-form,
+[data-theme="light"] .attendance-data-page,
+[data-theme="light"] .settings-page,
+[data-theme="light"] .login-page {
+  color: #172b4d;
+}
+
+[data-theme="light"] .dashboard-page h1,
+[data-theme="light"] .dashboard-page h2,
+[data-theme="light"] .dashboard-page h3,
+[data-theme="light"] .dashboard-page p,
+[data-theme="light"] .qrpage h1,
+[data-theme="light"] .qrpage h2,
+[data-theme="light"] .qrpage p,
+[data-theme="light"] .qrpage label,
+[data-theme="light"] .student-form h1,
+[data-theme="light"] .student-form h2,
+[data-theme="light"] .student-form p,
+[data-theme="light"] .student-form label,
+[data-theme="light"] .attendance-data-page h1,
+[data-theme="light"] .attendance-data-page h2,
+[data-theme="light"] .attendance-data-page p,
+[data-theme="light"] .attendance-data-page td,
+[data-theme="light"] .settings-page h1,
+[data-theme="light"] .settings-page h2,
+[data-theme="light"] .settings-page h3,
+[data-theme="light"] .settings-page p,
+[data-theme="light"] .settings-page dt,
+[data-theme="light"] .settings-page dd,
+[data-theme="light"] .login-form h2,
+[data-theme="light"] .login-form > p {
+  color: #172b4d;
+}
+
+[data-theme="light"] .dashboard-page .card-details p:nth-child(3),
+[data-theme="light"] .recent-session-info span,
+[data-theme="light"] .recent-session-time,
+[data-theme="light"] .qrpage-header > p,
+[data-theme="light"] .qr-section-heading p,
+[data-theme="light"] .qr-result-note,
+[data-theme="light"] .settings-header > p,
+[data-theme="light"] .settings-card > p,
+[data-theme="light"] .login-privacy {
+  color: #64748b;
+}
+
+[data-theme="light"] .dashboard-page .dash-card,
+[data-theme="light"] .dashboard-page .dash-recent-activity,
+[data-theme="light"] .recent-session,
+[data-theme="light"] .qr-builder,
+[data-theme="light"] .qr-result,
+[data-theme="light"] .student-form form,
+[data-theme="light"] .attendance-data-page table,
+[data-theme="light"] .attendance-data-page > p,
+[data-theme="light"] .settings-card,
+[data-theme="light"] .login-shell {
+  color: #172b4d;
+  background: #ffffff;
+  border-color: #dbe3ee;
+}
+
+[data-theme="light"] .dashboard-page input,
+[data-theme="light"] .dashboard-page select,
+[data-theme="light"] .qrpage input,
+[data-theme="light"] .qrpage select,
+[data-theme="light"] .student-form input,
+[data-theme="light"] .theme-option label {
+  color: #172b4d;
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+[data-theme="light"] .dashboard-page input::placeholder,
+[data-theme="light"] .qrpage input::placeholder,
+[data-theme="light"] .student-form input::placeholder {
+  color: #64748b;
+}
+
+[data-theme="midnight"] .dashboard-page,
+[data-theme="midnight"] .qrpage,
+[data-theme="midnight"] .student-form,
+[data-theme="midnight"] .attendance-data-page,
+[data-theme="midnight"] .settings-page,
+[data-theme="midnight"] .login-page {
+  color: #f8fafc;
+}
+
+[data-theme="midnight"] .dashboard-page h1,
+[data-theme="midnight"] .dashboard-page h2,
+[data-theme="midnight"] .dashboard-page h3,
+[data-theme="midnight"] .dashboard-page p,
+[data-theme="midnight"] .qrpage h1,
+[data-theme="midnight"] .qrpage h2,
+[data-theme="midnight"] .qrpage p,
+[data-theme="midnight"] .qrpage label,
+[data-theme="midnight"] .student-form h1,
+[data-theme="midnight"] .student-form h2,
+[data-theme="midnight"] .student-form p,
+[data-theme="midnight"] .student-form label,
+[data-theme="midnight"] .attendance-data-page h1,
+[data-theme="midnight"] .attendance-data-page h2,
+[data-theme="midnight"] .attendance-data-page p,
+[data-theme="midnight"] .attendance-data-page td,
+[data-theme="midnight"] .settings-page h1,
+[data-theme="midnight"] .settings-page h2,
+[data-theme="midnight"] .settings-page h3,
+[data-theme="midnight"] .settings-page p,
+[data-theme="midnight"] .settings-page dt,
+[data-theme="midnight"] .settings-page dd,
+[data-theme="midnight"] .login-form h2 {
+  color: #f8fafc;
+}
+
+[data-theme="midnight"] .dashboard-page .card-details p:nth-child(3),
+[data-theme="midnight"] .recent-session-info span,
+[data-theme="midnight"] .recent-session-time,
+[data-theme="midnight"] .qrpage-header > p,
+[data-theme="midnight"] .qr-section-heading p,
+[data-theme="midnight"] .qr-result-note,
+[data-theme="midnight"] .settings-header > p,
+[data-theme="midnight"] .settings-card > p,
+[data-theme="midnight"] .login-form > p,
+[data-theme="midnight"] .login-privacy {
+  color: #b5c3d6;
+}
+
+[data-theme="midnight"] .qrpage input,
+[data-theme="midnight"] .qrpage select,
+[data-theme="midnight"] .student-form input,
+[data-theme="midnight"] .theme-option label {
+  color: #f8fafc;
+  background: #152135;
+  border-color: #536987;
+}
+
+[data-theme="midnight"] .qrpage input::placeholder,
+[data-theme="midnight"] .student-form input::placeholder {
+  color: #91a4bd;
+}
+
+[data-theme="midnight"] .attendance-data-page th {
+  color: #ffffff;
+  background: #253957;
+}
+
+[data-theme="midnight"] .attendance-data-page td,
+[data-theme="midnight"] .attendance-data-page tbody tr,
+[data-theme="midnight"] .attendance-data-page tbody tr:nth-child(even) {
+  color: #f8fafc;
+  background: #1b2a40;
+  border-color: #34465f;
+}
+
+[data-theme="midnight"] .attendance-data-page tbody tr:hover {
+  background: #263a5b;
+}
+

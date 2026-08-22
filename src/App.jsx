@@ -12,9 +12,10 @@ import AttendanceData from './components/attendancedata';
 import FaceScanner from './components/facescanner';
 import ClassesData, { SessionAttendanceData } from './components/sessionsdata';
 import Login from './components/login';
+import ActiveSessions from './components/activesessions';
 import { useAuth } from './components/authcontext';
 function App() {
-  const [sidebarHidden, setSidebarHidden] = useState(false);
+  const [sidebarHidden, setSidebarHidden] = useState(window.innerWidth <= 800);
   const [guestLoginPending, setGuestLoginPending] = useState(false);
   const { user, loginAsGuest } = useAuth();
   const isStudentScan = window.location.pathname === '/student-form';
@@ -52,18 +53,24 @@ function App() {
 
   return (
     <div className='app'>
-      <Sidebar hidden={sidebarHidden} />
+      <Sidebar
+        hidden={sidebarHidden}
+        onClose={() => setSidebarHidden(true)}
+      />
       <div className='app-content'>
-        <Navbar formData={formData} onMenuClick={() => setSidebarHidden((hidden) => !hidden)} />
+        <Navbar formData={formData}
+          sidebarHidden={sidebarHidden}
+          onMenuClick={() => setSidebarHidden((hidden) => !hidden)} />
         <Routes>
           <Route path="/" element={<Dashboard />}>Dashboard</Route>
-          <Route path="/lecturerpage" element={<LecturerPage/>}>Lecturer Page</Route>
+          <Route path="/lecturerpage" element={<LecturerPage />}>Lecturer Page</Route>
           <Route path="/student-form" element={<StudentForm formData={formData} setFormData={setFormData} />}>Student Form</Route>
-          <Route path="/settings" element={<Settings/>} >Settings</Route>
+          <Route path="/settings" element={<Settings />} >Settings</Route>
           <Route path="/attendance-data" element={<AttendanceData />}>Attendance Data</Route>
-          <Route path="/facedetection" element={<FaceScanner/>}>Face Detection</Route>
-          <Route path="/attendance-sessions" element={<ClassesData/>}>Classes</Route>
-          <Route path="/attendance-sessions/:sessionId" element={<SessionAttendanceData/>} />
+          <Route path="/facedetection" element={<FaceScanner />}>Face Detection</Route>
+          <Route path="/attendance-sessions" element={<ClassesData />}>Classes</Route>
+          <Route path="/active-sessions" element={<ActiveSessions />}>Active Sessions</Route>
+          <Route path="/attendance-sessions/:sessionId" element={<SessionAttendanceData />} />
         </Routes>
       </div>
       <BottomNav />

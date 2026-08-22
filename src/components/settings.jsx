@@ -5,7 +5,10 @@ import "./settings.css";
 
 function Settings() {
     const { user } = useAuth();
-    const [theme, setTheme] = useState(() => localStorage.getItem("smartattend-theme") || "light");
+    const [theme, setTheme] = useState(() => {
+        const savedTheme = localStorage.getItem("smartattend-theme");
+        return savedTheme === "midnight" ? "midnight" : "light";
+    });
     const [profileImageFailed, setProfileImageFailed] = useState(false);
 
     useEffect(() => {
@@ -52,23 +55,11 @@ function Settings() {
                     <div className="theme-options" role="radiogroup" aria-label="Workspace theme">
                         <div className="theme-option">
                             <input id="theme-light" type="radio" name="theme" value="light" checked={theme === "light"} onChange={() => setTheme("light")} />
-                            <label htmlFor="theme-light">Classic workspace</label>
+                            <label htmlFor="theme-light">Light workspace</label>
                         </div>
                         <div className="theme-option">
                             <input id="theme-midnight" type="radio" name="theme" value="midnight" checked={theme === "midnight"} onChange={() => setTheme("midnight")} />
                             <label htmlFor="theme-midnight">Midnight workspace</label>
-                        </div>
-                        <div className="theme-option">
-                            <input id="theme-ocean" type="radio" name="theme" value="ocean" checked={theme === "ocean"} onChange={() => setTheme("ocean")} />
-                            <label htmlFor="theme-ocean">Lagoon workspace</label>
-                        </div>
-                        <div className="theme-option">
-                            <input id="theme-forest" type="radio" name="theme" value="forest" checked={theme === "forest"} onChange={() => setTheme("forest")} />
-                            <label htmlFor="theme-forest">Meadow workspace</label>
-                        </div>
-                        <div className="theme-option">
-                            <input id="theme-sunset" type="radio" name="theme" value="sunset" checked={theme === "sunset"} onChange={() => setTheme("sunset")} />
-                            <label htmlFor="theme-sunset">Coral workspace</label>
                         </div>
                     </div>
                     <p className="theme-note">Your preference is saved on this device.</p>

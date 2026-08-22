@@ -20,6 +20,7 @@ function ClassesData() {
         try {
             const recordsQuery = query(
                 collection(db, "attendance_records"),
+                where("sessionId", "==", session.id),
                 where("ownerId", "==", user.uid)
             );
             const recordsSnapshot = await getDocs(recordsQuery);
