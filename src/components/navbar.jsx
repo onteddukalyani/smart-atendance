@@ -5,10 +5,15 @@ import {
     FaChevronDown,
     FaUser
 } from "react-icons/fa";
-import React from "react";
+import React, { useState } from "react";
 import './navbar.css'
+import { useAuth } from './authcontext';
 
 function Navbar({ formData, onMenuClick }) {
+    const { user } = useAuth();
+    const [profileImageFailed, setProfileImageFailed] = useState(false);
+    const profileName = user?.displayName || formData.fullName || (user?.isAnonymous ? "Guest" : "Profile");
+    const profileImage = user?.photoURL || formData.image;
     return (
         <header className="navbar">
 
@@ -24,11 +29,12 @@ function Navbar({ formData, onMenuClick }) {
 
                 <div className="profile">
 
-                    {formData.image ? (
+                    {profileImage && !profileImageFailed ? (
                         <img
-                            src={formData.image}
+                            src={profileImage}
                             alt="Profile"
                             className="nav-profile-img"
+                            onError={() => setProfileImageFailed(true)}
                         />
                     ) : (
                         <div className="nav-profile-placeholder">
@@ -36,7 +42,7 @@ function Navbar({ formData, onMenuClick }) {
                         </div>
                     )}
 
-                    <span>{formData.fullName || "Lecturer" }</span>
+                    <span>{profileName}</span>
                 </div>
 
             </div>

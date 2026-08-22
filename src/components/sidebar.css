@@ -1,7 +1,7 @@
 .sidebar {
     height: 100vh;
     width: 260px;
-    background: #111827;
+    background: var(--nav-bg);
     color: white;
     display: flex;
     flex-direction: column;
@@ -28,7 +28,7 @@
 
 .logo-icon {
     font-size: 32px;
-    color: #8b5cf6;
+    color: var(--accent);
 }
 
 .logo h2 {
@@ -64,7 +64,7 @@
 }
 
 .menu li.active {
-    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
     color: white;
 }
 
@@ -105,7 +105,7 @@
 }
 
 .menu li:hover {
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    background: linear-gradient(135deg, var(--accent-strong), var(--accent));
     transform: translateX(5px);
 }
 

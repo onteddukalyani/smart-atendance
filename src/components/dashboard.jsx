@@ -2,6 +2,7 @@ import "./dashboard.css";
 import { useEffect, useState } from "react";
 import { SiGoogleclassroom } from "react-icons/si";
 import { IoQrCodeOutline } from "react-icons/io5";
+import { IoAddCircleOutline } from "react-icons/io5";
 import { GoPeople } from "react-icons/go";
 import { LuClipboardList } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
@@ -68,6 +69,7 @@ function Dashboard() {
     }, [user]);
 
     const dashcards = [
+        { icon: <IoAddCircleOutline />, name: "Take Attendance", value: "Start", path: "/lecturerpage", description: "New class session" },
         { icon: <SiGoogleclassroom />, name: "Classes", value: counts.sessions, path: "/attendance-sessions" },
         { icon: <IoQrCodeOutline />, name: "Active Sessions", value: counts.activeSessions, path: "/lecturerpage" },
         { icon: <GoPeople />, name: "Total Students", value: counts.students, path: "/" },
@@ -79,14 +81,14 @@ function Dashboard() {
                 {
                     dashcards.map((item, index) => (
                         <div key={index}>
-                            <Link to={item.path} className="dash-link dash-card" >
+                            <Link to={item.path} className={`dash-link dash-card ${item.name === "Take Attendance" ? "action-card" : ""}`} >
                                 <span className="dash-icons">
                                     {item.icon}
                                 </span>
                                 <div className="card-details">
                                     <p>{item.name}</p>
                                     <p>{item.value}</p>
-                                    <p>{item.name === "Attendance Today" ? "Submissions today" : "From Database"}</p>
+                                    <p>{item.description || (item.name === "Attendance Today" ? "Submissions today" : "From Database")}</p>
                                 </div>
                             </Link>
                         </div>

@@ -2,7 +2,7 @@
 .navbar {
     margin-top:0;
     height: 80px;
-    background: white;
+    background: var(--surface);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,7 +20,7 @@
     width: 45px;
     height: 45px;
     border: none;
-    background: #f4f6fb;
+    background: var(--surface-soft);
     border-radius: 12px;
     cursor: pointer;
     font-size: 20px;
@@ -28,7 +28,7 @@
 }
 
 .menu-btn:hover {
-    background: #5b5ff6;
+    background: var(--accent);
     color: white;
 }
 
@@ -44,7 +44,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #f8fafc;
+    background: var(--surface-soft);
     border-radius: 50%;
     position: relative;
     cursor: pointer;
