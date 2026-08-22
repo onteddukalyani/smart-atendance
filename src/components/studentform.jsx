@@ -317,7 +317,7 @@ function StudentForm({ formData, setFormData }) {
                 <div className="button-group">
 
                     <button
-                        className="save-btn"
+                        className="save-btn" 
                         type="submit"
                         disabled={submitting}
                     >
