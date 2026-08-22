@@ -1,5 +1,4 @@
 import {
-    FaUser,
     FaCog,
     FaSignOutAlt,
     FaGraduationCap,
@@ -8,8 +7,10 @@ import { SiGoogleclassroom } from "react-icons/si";
 import "./sidebar.css";
 import { RiDashboardFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { useAuth } from "./authcontext";
 
 function Sidebar({ hidden }) {
+    const { logoutUser } = useAuth();
     const menu = [
         { icon: <RiDashboardFill />, text: "Dashboard", path: "/" },
         { icon: <SiGoogleclassroom />, text: "Classes", path: "/attendance-sessions" },
@@ -39,11 +40,10 @@ function Sidebar({ hidden }) {
                     ))
                 }
             </ul>
-            <div className="logout">
+            <button className="logout" type="button" onClick={logoutUser}>
                 <FaSignOutAlt />
                 Logout
-
-            </div>
+            </button>
 
         </aside>
 

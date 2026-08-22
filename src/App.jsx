@@ -11,8 +11,12 @@ import Settings from './components/settings';
 import AttendanceData from './components/attendancedata';
 import FaceScanner from './components/facescanner';
 import ClassesData, { SessionAttendanceData } from './components/sessionsdata';
+import Login from './components/login';
+import { useAuth } from './components/authcontext';
 function App() {
   const [sidebarHidden, setSidebarHidden] = useState(false);
+  const { user, logoutUser } = useAuth();
+
   const [formData, setFormData] = useState({
     image: "",
     fullName: "",
@@ -25,6 +29,10 @@ function App() {
     gender: "",
     bio: ""
   });
+
+  if (!user) {
+    return <Login />;
+  }
 
   return (
     <div className='app'>
