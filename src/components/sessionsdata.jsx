@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { collection, doc, getDoc, getDocs, query, where, writeBatch } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../firebase";
+import { useAuth } from "./authcontext";
 import './attendancedata.css';
 
 function ClassesData() {
+    const { user } = useAuth();
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -18,7 +20,7 @@ function ClassesData() {
         try {
             const recordsQuery = query(
                 collection(db, "attendance_records"),
-                where("sessionId", "==", session.id)
+                where("ownerId", "==", user.uid)
             );
             const recordsSnapshot = await getDocs(recordsQuery);
             const batch = writeBatch(db);
@@ -38,7 +40,10 @@ function ClassesData() {
     useEffect(() => {
         const getSessions = async () => {
             try {
-                const snapshot = await getDocs(collection(db, "attendance_sessions"));
+                const snapshot = await getDocs(query(
+                    collection(db, "attendance_sessions"),
+                    where("ownerId", "==", user.uid)
+                ));
                 setSessions(snapshot.docs.map((sessionDoc) => ({
                     id: sessionDoc.id,
                     ...sessionDoc.data()
@@ -51,7 +56,7 @@ function ClassesData() {
         };
 
         getSessions();
-    }, []);
+    }, [user]);
 
     if (loading) {
         return <p>Loading sessions...</p>;
@@ -109,6 +114,7 @@ export function SessionAttendanceData() {
     const [records, setRecords] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     useEffect(() => {
         const getAttendance = async () => {
@@ -121,13 +127,13 @@ export function SessionAttendanceData() {
                 setSession({ id: sessionSnapshot.id, ...sessionSnapshot.data() });
                 const recordsQuery = query(
                     collection(db, "attendance_records"),
-                    where("sessionId", "==", sessionId)
+                    where("ownerId", "==", user.uid)
                 );
                 const recordsSnapshot = await getDocs(recordsQuery);
                 setRecords(recordsSnapshot.docs.map((recordDoc) => ({
                     id: recordDoc.id,
                     ...recordDoc.data()
-                })));
+                })).filter((record) => record.sessionId === sessionId));
             } catch (error) {
                 console.error("Error getting attendance:", error);
             } finally {
@@ -136,7 +142,7 @@ export function SessionAttendanceData() {
         };
 
         getAttendance();
-    }, [sessionId]);
+    }, [sessionId, user]);
 
     if (loading) {
         return <p>Loading attendance...</p>;

@@ -1,5 +1,5 @@
-import { doc,getDoc,setDoc, collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { auth, db } from "../firebase";
 
 export async function createAttendanceSession(classCode, roomNo) {
   const now = Date.now();
@@ -12,6 +12,7 @@ export async function createAttendanceSession(classCode, roomNo) {
       createdAt: now,
       expiresAt: expiresAt,
       active: true
+      ,ownerId: auth.currentUser.uid
      }
   );
   return docRef.id;

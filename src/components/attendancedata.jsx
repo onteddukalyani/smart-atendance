@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
+import { useAuth } from "./authcontext";
 import './attendancedata.css'
 
 function AttendanceData() {
+    const { user } = useAuth();
     const [records, setRecords] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -11,8 +13,8 @@ function AttendanceData() {
         const getAttendance = async () => {
             try {
                 const [recordsSnapshot, sessionsSnapshot] = await Promise.all([
-                    getDocs(collection(db, "attendance_records")),
-                    getDocs(collection(db, "attendance_sessions"))
+                    getDocs(query(collection(db, "attendance_records"), where("ownerId", "==", user.uid))),
+                    getDocs(query(collection(db, "attendance_sessions"), where("ownerId", "==", user.uid)))
                 ]);
 
                 const sessions = new Map(
@@ -38,7 +40,7 @@ function AttendanceData() {
         };
 
         getAttendance();
-    }, []);
+    }, [user]);
 
     if (loading) {
         return <p>Loading attendance...</p>;

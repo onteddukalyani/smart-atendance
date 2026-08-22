@@ -6,10 +6,12 @@ import { GoPeople } from "react-icons/go";
 import { LuClipboardList } from "react-icons/lu";
 import { SlCalender } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebase";
+import { useAuth } from "./authcontext";
 
 function Dashboard() {
+    const { user } = useAuth();
     const [recentSessions, setRecentSessions] = useState([]);
     const [counts, setCounts] = useState({
         sessions: 0,
@@ -22,8 +24,8 @@ function Dashboard() {
         const getDashboardCounts = async () => {
             try {
                 const [sessionsSnapshot, recordsSnapshot] = await Promise.all([
-                    getDocs(collection(db, "attendance_sessions")),
-                    getDocs(collection(db, "attendance_records"))
+                    getDocs(query(collection(db, "attendance_sessions"), where("ownerId", "==", user.uid))),
+                    getDocs(query(collection(db, "attendance_records"), where("ownerId", "==", user.uid)))
                 ]);
                 const sessions = sessionsSnapshot.docs
                     .map((sessionDoc) => ({
@@ -63,7 +65,7 @@ function Dashboard() {
         };
 
         getDashboardCounts();
-    }, []);
+    }, [user]);
 
     const dashcards = [
         { icon: <SiGoogleclassroom />, name: "Classes", value: counts.sessions, path: "/attendance-sessions" },

@@ -162,6 +162,7 @@ function StudentForm({ formData, setFormData }) {
             // SAVE ATTENDANCE
             await setDoc(attendanceRef, {
                 sessionId: sessionId,
+                ownerId: sessionData.ownerId,
                 roomNo: sessionData.roomNo || "N/A",
                 fullName: formData.fullName,
                 rollNo: formData.rollNo.trim(),
